@@ -21,7 +21,7 @@ class TestCase {
 		input = new SearchInput();
 		details = new SearchDetails();
 		
-		malSearch = new MALSearch();
+		malSearch = new MALSearch("pikachu", "1");
 		twitterCrawler = new TwitterCrawler();
 		twitterSearch = new TwitterSearch();
 	}
@@ -39,9 +39,7 @@ class TestCase {
 	
 	@Test
 	void testInvalidAnimeInput() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			input.setAnimeInput("@!%#$");
-		});
+		assertEquals("", input.getAnimeInput());
 	}
 	
 	@Test
@@ -78,13 +76,22 @@ class TestCase {
 	}
 	
 	@Test
-	void testValidMALSearch() {
-		
+	void testValidMALSearchTop30() throws IOException {
+		assertNotEquals("", malSearch.top30());
 	}
 	
 	@Test
-	void testInvalidMALSearch() {
-		
+	void testValidMALSearchAnime() throws IOException {
+		assertNotEquals("", malSearch.searchAnime());
 	}
-
+	
+	@Test
+	void testValidMALSearchAnimeDetails() throws IOException {
+		assertNotEquals("", malSearch.animeDetails());
+	}
+	
+	@Test
+	void testValidTwitterSearch() throws IOException {
+		assertNotEquals("", twitterSearch.topTweets(0, "animeCrawler7000.csv"));
+	}
 }

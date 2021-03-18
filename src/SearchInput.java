@@ -18,21 +18,26 @@ public class SearchInput {
 		return animeInput;
 	}
 
-	public void setAnimeInput(String animeInput) {
+	public boolean setAnimeInput(String animeInput) {
 		// Regex to check if a string contains only special characters
-	    String regex = "[^a-zA-Z0-9]+";
-	    // Compile the ReGex
-	    Pattern p = Pattern.compile(regex);
-	    // Find match between given string & regular expression
-	    Matcher m = p.matcher(animeInput);
-	    
-	    // validation
-		if(m.find())
-			throw new IllegalArgumentException("Invalid Input!");
-		if(animeInput == null || animeInput.length() < 3)
-			throw new IllegalArgumentException("Invalid Input!");
-		
-		this.animeInput = animeInput;
+		String regex = "[^a-zA-Z0-9]+";
+		// Compile the ReGex
+		Pattern p = Pattern.compile(regex);
+		// Find match between given string & regular expression
+		Matcher m = p.matcher(animeInput);
+
+		// validation
+		if (m.find()) {
+			this.animeInput = "";
+			return false;
+		} else if (animeInput == null || animeInput.length() < 3) {
+			this.animeInput = "";
+			return false;
+		}
+		else {
+			this.animeInput = animeInput;
+			return true;
+		}
 	}
 
 	public String getSelectedAnime() {
@@ -40,7 +45,22 @@ public class SearchInput {
 	}
 
 	public void setSelectedAnime(String selectedAnime) {
-		this.selectedAnime = selectedAnime;
+		// Regex to check if a string contains only special characters
+		String regex = "[^0-9]+";
+		// Compile the ReGex
+		Pattern p = Pattern.compile(regex);
+		// Find match between given string & regular expression
+		Matcher m = p.matcher(selectedAnime);
+
+		// validation
+		if (m.find()) {
+			this.selectedAnime = null;
+		}
+
+		else {
+			this.selectedAnime = selectedAnime;
+		}
+
 	}
 
 }

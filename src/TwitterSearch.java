@@ -5,14 +5,14 @@ import com.opencsv.CSVReader;
 
 public class TwitterSearch {
 
-	public String top7Tweets(int x) {
+	public String topTweets(int x, String csv) {
 		String Anime = "Most Favorited Tweets\n";
 		int counter = 0;
 		int startread = x;
 
 		CSVReader reader = null;
 		try {
-			reader = new CSVReader(new FileReader("animeCrawler7000.csv"), ',', '\'',
+			reader = new CSVReader(new FileReader(csv), ',', '\'',
 					1);
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null && counter < (6 + x)) {
