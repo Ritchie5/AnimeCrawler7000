@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.TextArea;
 import java.awt.TextField;
-import
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
