@@ -165,7 +165,6 @@ public class HomePageGUI {
 						try {
 							mal.setSelectedAnime(input);
 							selectedanime = mal.animeDetails();
-
 						} catch (IOException e1) {
 
 							e1.printStackTrace();
@@ -206,12 +205,19 @@ public class HomePageGUI {
 
 				// Use searchedanime variable. Contains the anime name that was searched.
 				TwitterCrawler getTweets = new TwitterCrawler();
+				TwitterSearch getTweets1 = new TwitterSearch();
 				try {
 					center.setText("Fetching data... Please wait...");
 					center.paintImmediately(center.getVisibleRect());
-					String result = getTweets.query(searchedanime);
+					getTweets.query(searchedanime); 
+					String result = getTweets1.topTweets(i,"animeCrawler7000.csv");
 					System.out.print(result);
 					center.setText(result);
+					center.paintImmediately(center.getVisibleRect());
+					next.setEnabled(true);
+					back.setEnabled(true);
+					SentimentChart sentimentbar = new SentimentChart("Sentiment Chart"); 
+					
 				} catch (TwitterException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,8 +225,7 @@ public class HomePageGUI {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				next.setEnabled(true);
-				back.setEnabled(true);
+				
 				twitterBtn.setEnabled(false);
 			}
 		});

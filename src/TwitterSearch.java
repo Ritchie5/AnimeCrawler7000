@@ -18,8 +18,6 @@ public class TwitterSearch {
 			while ((nextLine = reader.readNext()) != null && counter < (6 + x)) {
 
 				if (startread < counter) {
-					System.out.println(nextLine[0]);
-					System.out.println(nextLine[2]);
 					Anime += nextLine[0] + ": ";
 					Anime += nextLine[2] + " ";
 					Anime += "\nFavorited:" + nextLine[1];

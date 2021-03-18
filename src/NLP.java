@@ -141,7 +141,7 @@ public class NLP {
 	public static ArrayList<String> readCSVintoArray() throws IOException {
 		ArrayList<String> tweetList = new ArrayList<String>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("animeCrawler7000v2.csv"));
+			BufferedReader br = new BufferedReader(new FileReader("animeCrawler7000.csv"));
 			String line;
 
 			while ((line = br.readLine()) != null) {

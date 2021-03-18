@@ -20,7 +20,7 @@ public class SearchInput {
 
 	public boolean setAnimeInput(String animeInput) {
 		// Regex to check if a string contains only special characters
-		String regex = "[^a-zA-Z0-9]+";
+		String regex = "[^a-zA-Z0-9 ]+";
 		// Compile the ReGex
 		Pattern p = Pattern.compile(regex);
 		// Find match between given string & regular expression
