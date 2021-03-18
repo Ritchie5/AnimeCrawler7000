@@ -10,5 +10,13 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Twitter4J"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/CSVReader"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javalang"/>
+	<classpathentry kind="lib" path="lib/ejml-core-0.39.jar"/>
+	<classpathentry kind="lib" path="lib/ejml-ddense-0.39.jar"/>
+	<classpathentry kind="lib" path="lib/ejml-simple-0.39.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="lib/opencsv-3.8.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/twitter4j-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-4.2.0-models.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

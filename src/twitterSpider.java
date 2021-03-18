@@ -29,7 +29,7 @@ public class twitterSpider {
 	}
 	
 	//to search for tweets and add to database. 
-	public String query(String searchTerm) throws TwitterException, IOException {
+	public ArrayList<String> query(String searchTerm) throws TwitterException, IOException {
 		try {
 			// File tweetFile = new File("animeCrawler7000.txt");
 			File tweetFile = new File("C:/Users/jiayi/Documents/OOP/Assignment/animeCrawler7000.csv");
@@ -55,6 +55,7 @@ public class twitterSpider {
 		long lastID = Long.MAX_VALUE;
 		// create arrayList to store tweets
 		ArrayList<Status> tweets = new ArrayList<Status>();
+		ArrayList<String> tweetList = new ArrayList<String>();
 
 		// open write
 		// csv version
@@ -110,7 +111,8 @@ public class twitterSpider {
 		TwitterSearch getTweets = new TwitterSearch();
 		String returnAnime = getTweets.top7tweets(0);
 		 //use for loop to append the details to this string. 
-		return returnAnime; 
+		// return returnAnime;
+		return tweetList;
 		
 	}
 	
