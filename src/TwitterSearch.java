@@ -5,7 +5,7 @@ import com.opencsv.CSVReader;
 
 public class TwitterSearch {
 
-	public String top7tweets(int x) {
+	public String top7Tweets(int x) {
 		String Anime = "Most Favorited Tweets\n";
 		int counter = 0;
 		int startread = x;
@@ -16,7 +16,10 @@ public class TwitterSearch {
 					1);
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null && counter < (6 + x)) {
+
 				if (startread < counter) {
+					System.out.println(nextLine[0]);
+					System.out.println(nextLine[2]);
 					Anime += nextLine[0] + ": ";
 					Anime += nextLine[2] + " ";
 					Anime += "\nFavorited:" + nextLine[1];

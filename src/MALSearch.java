@@ -37,6 +37,11 @@ public class MALSearch extends SearchInput {
 	}
 
 	public String searchAnime() throws IOException {
+		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty())
+		{
+			throw new IllegalArgumentException("List null!");
+		}
+		
 		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty()) // return invalid if the hashmap is empty
 		{
 			return "Invalid Input, please try again!";

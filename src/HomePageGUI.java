@@ -27,7 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
-public class homePageGUI {
+public class HomePageGUI {
 	public static int search;
 
 	public static String top30anime;
@@ -37,8 +37,8 @@ public class homePageGUI {
 	
 	public static MALSearch mal = new MALSearch();
 
-	public homePageGUI() {
-		settop30anime();
+	public HomePageGUI() {
+		setTop30Anime();
 		homeGUI();
 	}
 
@@ -46,7 +46,7 @@ public class homePageGUI {
 		searchedanime = searched;
 	}
 
-	public static void settop30anime() {
+	public static void setTop30Anime() {
 		try {
 			top30anime = MALSearch.top30();
 		} catch (IOException e1) {
@@ -225,7 +225,7 @@ public class homePageGUI {
 			public void actionPerformed(ActionEvent e) {
 				i += 5;
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.top7tweets(i);
+				String result = getTweets.top7Tweets(i);
 				center.setText(result);
 			}
 		});
@@ -237,7 +237,7 @@ public class homePageGUI {
 					i = 0;
 				}
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.top7tweets(i);
+				String result = getTweets.top7Tweets(i);
 				center.setText(result);
 			}
 		});

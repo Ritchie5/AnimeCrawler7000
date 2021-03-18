@@ -45,6 +45,10 @@ public class MALCrawler {
 		// ArrayList
 		ArrayList<SearchDetails> list = new ArrayList<>();
 
+		if(searchStr == null){
+			throw new IllegalArgumentException("Input Null!");
+		}
+		
 		try {
 			// Get connection response
 			Connection.Response response = Jsoup.connect(url + searchStr).userAgent(

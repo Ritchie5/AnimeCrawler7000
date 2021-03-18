@@ -105,7 +105,7 @@ public class TwitterCrawler {
 		writer.close();
 
 		TwitterSearch getTweets = new TwitterSearch();
-		String returnAnime = getTweets.top7tweets(0);
+		String returnAnime = getTweets.top7Tweets(0);
 		// use for loop to append the details to this string.
 		return returnAnime;
 
