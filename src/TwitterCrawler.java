@@ -103,7 +103,7 @@ public class TwitterCrawler {
 		for (Status t : tweets) {
 			// csv version
 			writer.write(t.getUser().getScreenName() + "," + t.getFavoriteCount() + ","
-					+ t.getText().replace("\n", " ").replace(",", " ") + "\n");
+					+ t.getText().trim().replaceAll("\n|\r|,", " ") + "\n");
 		}
 		writer.close();
 
