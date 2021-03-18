@@ -12,8 +12,7 @@ public class TwitterSearch {
 
 		CSVReader reader = null;
 		try {
-			reader = new CSVReader(new FileReader(csv), ',', '\'',
-					1);
+			reader = new CSVReader(new FileReader(csv));
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null && counter < (6 + x)) {
 
