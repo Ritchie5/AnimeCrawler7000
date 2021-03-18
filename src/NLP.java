@@ -12,22 +12,25 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.SentimentAnnotatedTree;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
-import twitter4j.TwitterException;
 
 public class NLP {
+	static StanfordCoreNLP pipeline;
 	static double tweetCount = 0;
 	static double[] sentimentArray = { 0, 0, 0, 0, 0 };
 	// static double[] sentimentArray = { 0, 9, 15, 6, 0 };
 
-	public static void main(String[] args) throws IOException, TwitterException {
+	public static void startNLP(String[] args) throws IOException {
 		/** one-time run to init annotators into pipeline before running findSentiment */
 		NLP.init();
 
 		/** read csv and store tweet text into ArrayList */
-		ArrayList<String> tweets = NLP.readCSVintoArray(); 
-		NLP.readTweets(tweets); // go through tweet texts in the ArrayList and assign individual score, appends score into array
-		NLP.getScores(sentimentArray); // get the scores from the sentimentArray and find total score, avr score, total tweets
-		NLP.getPercentage(sentimentArray); // get % of negative, neutral and positive tweets; needs getScores() to run first to get total tweetcount
+		ArrayList<String> tweets = NLP.readCSVintoArray();
+		NLP.readTweets(tweets); // go through tweet texts in the ArrayList and assign individual score, appends
+								// score into array
+		// NLP.getScores(sentimentArray); // get the scores from the sentimentArray and find total score, avr score, total
+										// tweets
+		// NLP.getPercentage(sentimentArray); // get % of negative, neutral and positive tweets; needs getScores() to run
+											// first to get total tweetcount
 
 		/** For GUI Team to call for output: */
 		// NLP.getScores(sentimentArray)[0]); // total score
@@ -39,8 +42,6 @@ public class NLP {
 		// NLP.getPercentage(sentimentArray)[2]); // % of tweets positive in double
 
 	}
-
-	static StanfordCoreNLP pipeline;
 
 	/**
 	 * init annotators to use for sentiment analysis
@@ -84,18 +85,10 @@ public class NLP {
 		}
 		return mainSentiment;
 	}
-	
+
 	/** iterate through tweets array to populate sentimentArray */
 	public static void readTweets(ArrayList<String> tweets) {
 		for (String tweet : tweets) {
-			/** skipping tweets that just have an image link */
-			// if (tweet.contains("https://t.co/")) {
-			// continue;
-			// }
-			/** ignoring retweet duplication */
-			if (tweet.contains("RT @")) {
-				continue;
-			}
 			/** print "score : tweet content" and adds counter to score in sentimentArray */
 			System.out.println(findSentiment(tweet) + " : " + tweet);
 			sentimentArray[findSentiment(tweet)]++;

@@ -12,14 +12,13 @@ class NLPTestCase {
 	String string;
 	String nonString;
 	ArrayList<String> tweetList;
-	double[] sentimentArray;
+	double[] sentimentArray = { 1, 4, 6, 2, 7 };
 
 	@BeforeEach
 	void setUp() throws Exception {
 		NLP.init();
 		string = new String("Eren is laughing");
 		nonString = new String("!*(@#&!*(@");
-		double[] sentimentArray = { 1, 4, 6, 2, 7 };
 
 	}
 
@@ -32,27 +31,32 @@ class NLPTestCase {
 		assertEquals(2, NLP.findSentiment(string), 2);
 	}
 
-	@Test
-	void testNonSentiment() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			NLP.findSentiment(nonString);
-		});
-	}
+	// @Test
+	// void testUnspokenSentiment() {
+	// 	assertThrows(IllegalArgumentException.class, () -> {
+	// 		NLP.findSentiment(nonString);
+	// 	});
+	// }
 
 	@Test
 	void testGetScores() {
-		double[] expectedOutput = {48, 19, 2.5};
-		assertEquals(expectedOutput, NLP.getScores(sentimentArray));
+		double[] expectedOutput = { 50, 2.5 };
+		assertArrayEquals(expectedOutput, NLP.getScores(sentimentArray));
+	}
+
+	@Test
+	void testReadTweets() {
+
 	}
 
 	@Test
 	void testCSVintoArray() {
-		// assertEquals(ArrayList<String>, Brain.readCSVintoArray());
+		assertArrayEquals(, NLP.readCSVintoArray());
 	}
 
 	@Test
 	void testNoCSVtoRead() throws IOException {
-		assertEquals("Failed to search find CSV.", Brain.readCSVintoArray());
+		assertEquals("Failed to search find CSV.", NLP.readCSVintoArray());
 	}
 
 }
