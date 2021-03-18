@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -7,20 +12,49 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.SentimentAnnotatedTree;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
+import twitter4j.TwitterException;
 
 public class NLP {
+	static double tweetCount = 0;
+	static double[] sentimentArray = { 0, 0, 0, 0, 0 };
+	// static double[] sentimentArray = { 0, 9, 15, 6, 0 };
+
+	public static void main(String[] args) throws IOException, TwitterException {
+		/** one-time run to init annotators into pipeline before running findSentiment */
+		NLP.init();
+
+		/** read csv and store tweet text into ArrayList */
+		ArrayList<String> tweets = NLP.readCSVintoArray(); 
+		NLP.readTweets(tweets); // go through tweet texts in the ArrayList and assign individual score, appends score into array
+		NLP.getScores(sentimentArray); // get the scores from the sentimentArray and find total score, avr score, total tweets
+		NLP.getPercentage(sentimentArray); // get % of negative, neutral and positive tweets; needs getScores() to run first to get total tweetcount
+
+		/** For GUI Team to call for output: */
+		// NLP.getScores(sentimentArray)[0]); // total score
+		// NLP.getScores(sentimentArray)[1]); // tweet count
+		// NLP.getScores(sentimentArray)[2]); // average score
+
+		// NLP.getPercentage(sentimentArray)[0]); // % of tweets negative in double
+		// NLP.getPercentage(sentimentArray)[1]); // % of tweets neutral in double
+		// NLP.getPercentage(sentimentArray)[2]); // % of tweets positive in double
+
+	}
+
 	static StanfordCoreNLP pipeline;
 
 	/**
 	 * init annotators to use for sentiment analysis
 	 * 
 	 * @param pipeline
+	 * @throws IOException
 	 */
-	public static void init() {
+
+	public static void init() throws IOException {
 		// pipeline = new StanfordCoreNLP("MyPropFile.properties");
 
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+		// turn off the warnings and continue to ignore untokenizable characters
 		props.setProperty("tokenize.options", "untokenizable=noneDelete");
 		pipeline = new StanfordCoreNLP(props);
 	}
@@ -50,6 +84,23 @@ public class NLP {
 		}
 		return mainSentiment;
 	}
+	
+	/** iterate through tweets array to populate sentimentArray */
+	public static void readTweets(ArrayList<String> tweets) {
+		for (String tweet : tweets) {
+			/** skipping tweets that just have an image link */
+			// if (tweet.contains("https://t.co/")) {
+			// continue;
+			// }
+			/** ignoring retweet duplication */
+			if (tweet.contains("RT @")) {
+				continue;
+			}
+			/** print "score : tweet content" and adds counter to score in sentimentArray */
+			System.out.println(findSentiment(tweet) + " : " + tweet);
+			sentimentArray[findSentiment(tweet)]++;
+		}
+	}
 
 	/**
 	 * 
@@ -58,7 +109,7 @@ public class NLP {
 	 */
 	public static double[] getScores(double[] array) {
 		double score = 0;
-		double tweetCount = 0;
+		// double tweetCount = 0;
 		double totalScore = 0;
 		for (double i : array) {
 			System.out.println("Score " + (int) score + ": " + i);
@@ -70,22 +121,45 @@ public class NLP {
 		System.out.println("Total Score: " + (int) totalScore);
 		System.out.println("Total Tweets: " + (int) tweetCount);
 		System.out.println("Average Score: " + averageScore);
-		return new double[] { totalScore, tweetCount, averageScore };
+		return new double[] { totalScore, averageScore };
 	}
 
 	/**
-	 * takes values from the two arrays to calculate percentage of tweets that are positive, negative and neutral
+	 * takes values from sentimentArray to calculate percentage of tweets that are
+	 * positive, negative and neutral
+	 * 
 	 * @param sentimentArray
-	 * @param scoreArray 
 	 * @return negPer, neuPer, posPer values in an array
 	 */
-	public static double[] getPercentage(double[] sentimentArray, double[] scoreArray) {
-		double negPer = sentimentArray[1] / scoreArray[1] * 100;
-		double neuPer = sentimentArray[2] / scoreArray[1] * 100;
-		double posPer = sentimentArray[3] / scoreArray[1] * 100;
+
+	// public static double[] getPercentage(double[] sentimentArray, double[]
+	// scoreArray) {
+	public static double[] getPercentage(double[] sentimentArray) {
+		double negPer = sentimentArray[1] / tweetCount * 100;
+		double neuPer = sentimentArray[2] / tweetCount * 100;
+		double posPer = sentimentArray[3] / tweetCount * 100;
 		System.out.println("Percentage Negative: " + negPer + "%");
 		System.out.println("Percentage Neutral: " + neuPer + "%");
 		System.out.println("Percentage Positive: " + posPer + "%");
+		// System.out.println("TweetCount: " + tweetCount);
 		return new double[] { negPer, neuPer, posPer };
+	}
+
+	public static ArrayList<String> readCSVintoArray() throws IOException {
+		ArrayList<String> tweetList = new ArrayList<String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("animeCrawler7000v2.csv"));
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				String[] cols = line.split(",");
+				tweetList.add(cols[2]);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Failed to search find CSV.");
+			e.printStackTrace();
+		}
+		return tweetList;
 	}
 }
