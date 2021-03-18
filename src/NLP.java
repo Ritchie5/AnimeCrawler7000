@@ -88,14 +88,6 @@ public class NLP {
 	/** iterate through tweets array to populate sentimentArray */
 	public static void readTweets(ArrayList<String> tweets) {
 		for (String tweet : tweets) {
-			/** skipping tweets that just have an image link */
-			// if (tweet.contains("https://t.co/")) {
-			// continue;
-			// }
-			/** ignoring retweet duplication */
-			if (tweet.contains("RT @")) {
-				continue;
-			}
 			/** print "score : tweet content" and adds counter to score in sentimentArray */
 			System.out.println(findSentiment(tweet) + " : " + tweet);
 			sentimentArray[findSentiment(tweet)]++;
@@ -148,7 +140,7 @@ public class NLP {
 	public static ArrayList<String> readCSVintoArray() throws IOException {
 		ArrayList<String> tweetList = new ArrayList<String>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("animeCrawler7000v2.csv"));
+			BufferedReader br = new BufferedReader(new FileReader("animeCrawler7000.csv"));
 			String line;
 
 			while ((line = br.readLine()) != null) {

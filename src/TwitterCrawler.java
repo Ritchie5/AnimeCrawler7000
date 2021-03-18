@@ -49,7 +49,7 @@ public class TwitterCrawler {
 		query.setLang("en");
 
 		// set number of tweets
-		int numTweets = 1000;
+		int numTweets = 100;
 
 		long lastID = Long.MAX_VALUE;
 		// create arrayList to store tweets
