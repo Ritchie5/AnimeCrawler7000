@@ -28,11 +28,12 @@ public class SearchInput {
 
 		// validation
 		if (m.find()) {
+			this.animeInput = "";
 			return false;
 		} else if (animeInput == null || animeInput.length() < 3) {
+			this.animeInput = "";
 			return false;
 		}
-
 		else {
 			this.animeInput = animeInput;
 			return true;

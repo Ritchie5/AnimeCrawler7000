@@ -14,14 +14,13 @@ public class MALSearch extends SearchInput {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static String top30() throws IOException {
-		MALCrawler crawler = new MALCrawler();
+	public String top30() throws IOException {
 		String Top30;
 
 		// TOP AIRING ANIME
 		int numberRank = 0;
 		Top30 = "Top 30 anime\n";
-		for (String anime : crawler.topAnimes().values()) {
+		for (String anime : MALCrawler.topAnimes().values()) {
 			numberRank++;
 			if (numberRank < 31) {
 				if (numberRank < 10) {

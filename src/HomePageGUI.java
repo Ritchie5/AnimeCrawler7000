@@ -49,7 +49,7 @@ public class HomePageGUI {
 
 	public static void setTop30Anime() {
 		try {
-			top30anime = MALSearch.top30();
+			top30anime = mal.top30();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -229,7 +229,7 @@ public class HomePageGUI {
 			public void actionPerformed(ActionEvent e) {
 				i += 5;
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.top7Tweets(i);
+				String result = getTweets.topTweets(i, "animeCrawler7000.csv");
 				center.setText(result);
 			}
 		});
@@ -241,7 +241,7 @@ public class HomePageGUI {
 					i = 0;
 				}
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.top7Tweets(i);
+				String result = getTweets.topTweets(i, "animeCrawler7000.csv");
 				center.setText(result);
 			}
 		});
