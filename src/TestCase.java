@@ -91,7 +91,7 @@ class TestCase {
 	}
 	
 	@Test
-	void testValidTwitterSearch() throws IOException {
+	void testValidTwitterSearch() {
 		assertNotEquals("", twitterSearch.topTweets(0, "animeCrawler7000.csv"));
 	}
 }
