@@ -2,7 +2,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,6 @@ class TestCase {
 	SearchDetails details;
 	
 	MALSearch malSearch;
-	TwitterCrawler twitterCrawler;
 	TwitterSearch twitterSearch;
 	
 	@BeforeEach
@@ -22,7 +20,6 @@ class TestCase {
 		details = new SearchDetails();
 		
 		malSearch = new MALSearch("pikachu", "1");
-		twitterCrawler = new TwitterCrawler();
 		twitterSearch = new TwitterSearch();
 	}
 	
@@ -36,16 +33,17 @@ class TestCase {
 		input.setAnimeInput("pikachu");
 		assertEquals("pikachu", input.getAnimeInput());
 	}
-	
+
 	@Test
 	void testInvalidAnimeInput() {
+		input.setAnimeInput("!@#");
 		assertEquals("", input.getAnimeInput());
 	}
 	
 	@Test
 	void testValidSelectedAnime() {
-		input.setSelectedAnime("Pokemon Pichu to Pikachu");
-		assertEquals("Pokemon Pichu to Pikachu", input.getSelectedAnime());
+		input.setSelectedAnime("1");
+		assertEquals("1", input.getSelectedAnime());
 	}
 	
 	@Test
