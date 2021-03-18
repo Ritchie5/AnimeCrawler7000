@@ -63,7 +63,12 @@ public class MALSearch extends SearchInput {
 	}
 
 	public String animeDetails() throws IOException {
-		int numberInput = Integer.valueOf(super.getSelectedAnime());
+		String checkInput = super.getSelectedAnime();
+		if(checkInput == null) {
+			return null;
+		}
+		else {
+		int numberInput = Integer.valueOf(checkInput);
 		int number = 0;
 		String animeDetails = "";
 		
@@ -75,5 +80,6 @@ public class MALSearch extends SearchInput {
 			}
 		}
 		return animeDetails;
+		}
 	}
 }

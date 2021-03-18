@@ -58,7 +58,7 @@ public class TwitterCrawler {
 
 		// open write
 		// csv version
-		
+
 		FileWriter writer = new FileWriter("animeCrawler7000.csv");
 		// Set csv headers
 		writer.write("Username,Favourites,Tweet\n");

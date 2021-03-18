@@ -32,9 +32,10 @@ public class HomePageGUI {
 
 	public static String top30anime;
 	public static String searchedanime;
+	public static String animesearched;
 
 	public static int i = 0;
-	
+
 	public static MALSearch mal = new MALSearch();
 
 	public HomePageGUI() {
@@ -136,14 +137,15 @@ public class HomePageGUI {
 		searchbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == searchbutton) {
-					if (searchTxtField.getText() == null) {
-						center.setText("Please input a anime");
-					} else {
-						search++;
-						if (search == 1) {
-							String animesearched = searchTxtField.getText();
+					search++;
+					if (search == 1) {
+						animesearched = searchTxtField.getText();
+						boolean isEmpty = mal.setAnimeInput(animesearched);
+						if (isEmpty == false) {
+							search = 0;
+							searchTxtField.setText(null);
+						} else {
 							try {
-								mal.setAnimeInput(animesearched);
 								animesearched = mal.searchAnime();
 							} catch (IOException e1) {
 								e1.printStackTrace();
@@ -152,36 +154,37 @@ public class HomePageGUI {
 								center.setText(animesearched);
 								homeBtn.setEnabled(true);
 								searchTxtField.setText(null);
-							} else {
-								search = 0;
-								searchTxtField.setText(null);
 							}
-						}
-
-						if (search >= 2) {
-							center.setText(null);
-							String input = searchTxtField.getText();
-							mal.setSelectedAnime(input);
-							String selectedanime = null;
-							try {
-								selectedanime = mal.animeDetails();
-
-							} catch (IOException e1) {
-
-								e1.printStackTrace();
-							}
-							if (selectedanime != null) {
-								center.setText(selectedanime);
-								twitterBtn.setEnabled(true);
-								String temp = mal.getSelectedAnime();
-								setsearchedanime(temp);
-								searchbutton.setEnabled(false);
-							}
-							searchTxtField.setText(null);
 						}
 					}
 
+					if (search >= 2) {
+						center.setText(null);
+						String input = searchTxtField.getText();
+						String selectedanime = null;
+						try {
+							mal.setSelectedAnime(input);
+							selectedanime = mal.animeDetails();
+
+						} catch (IOException e1) {
+
+							e1.printStackTrace();
+						}
+						if (selectedanime != null) {
+							center.setText(selectedanime);
+							twitterBtn.setEnabled(true);
+							String temp = mal.getSelectedAnime();
+							setsearchedanime(temp);
+							searchbutton.setEnabled(false);
+							searchTxtField.setText(null);
+						} else {
+							searchTxtField.setText(null);
+							center.setText(animesearched);
+							search++;
+						}
+					}
 				}
+
 			}
 		});
 
@@ -193,6 +196,7 @@ public class HomePageGUI {
 				back.setEnabled(false);
 				center.setText(top30anime);
 				searchbutton.setEnabled(true);
+				searchTxtField.setText(null);
 				search = 0;
 			}
 		});
