@@ -8,7 +8,7 @@ import twitter4j.TwitterException;
 
 public class Brain {
 	public static void main(String[] args) throws IOException, TwitterException {
-		String topic = "horimiya";
+		// String topic = "horimiya";
 
 		/**
 		 * run TweetManager.getTweets to start collating tweet messages into arrayList

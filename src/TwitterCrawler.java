@@ -1,23 +1,23 @@
 
-import twitter4j.*;
-
-import twitter4j.conf.ConfigurationBuilder;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.io.FileReader;  
-import com.opencsv.CSVReader;  
 
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
-
-public class twitterSpider {
+public class TwitterCrawler {
 	private Twitter twitter;
 
-	public twitterSpider() {
+	public TwitterCrawler() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true).setOAuthConsumerKey("c4DG9NWeXgLMr8Lfvt9D00Br9")
 				.setOAuthConsumerSecret("pv5gg7OddQWBhzfH8GkO6fmMyhq2ubdDTNkz2b3Cv4iBD7DYJF")
@@ -29,10 +29,9 @@ public class twitterSpider {
 	}
 	
 	//to search for tweets and add to database. 
-	public ArrayList<String> query(String searchTerm) throws TwitterException, IOException {
+	public String query(String searchTerm) throws TwitterException, IOException {
 		try {
-			// File tweetFile = new File("animeCrawler7000.txt");
-			File tweetFile = new File("C:/Users/jiayi/Documents/OOP/Assignment/animeCrawler7000.csv");
+			File tweetFile = new File("animeCrawler7000.csv");
 			if (tweetFile.createNewFile()) {
 				System.out.println("File created: " + tweetFile.getName());
 			} else {
@@ -55,12 +54,12 @@ public class twitterSpider {
 		long lastID = Long.MAX_VALUE;
 		// create arrayList to store tweets
 		ArrayList<Status> tweets = new ArrayList<Status>();
-		ArrayList<String> tweetList = new ArrayList<String>();
+		// ArrayList<String> tweetList = new ArrayList<String>();
 
 		// open write
 		// csv version
 		
-		FileWriter writer = new FileWriter("C:/Users/jiayi/Documents/OOP/Assignment/animeCrawler7000.csv");
+		FileWriter writer = new FileWriter("animeCrawler7000.csv");
 		// Set csv headers
 		writer.write("Username,Favourites,Tweet\n");
 
@@ -107,17 +106,14 @@ public class twitterSpider {
 					+ t.getText().replace("\n", " ").replace(",", " ") + "\n");
 		}
 		writer.close();
-		
+
 		TwitterSearch getTweets = new TwitterSearch();
-		String returnAnime = getTweets.top7tweets(0);
-		 //use for loop to append the details to this string. 
-		// return returnAnime;
-		return tweetList;
 		
+		String returnAnime = getTweets.top7Tweets(0);
+		// use for loop to append the details to this string.
+		return returnAnime;
+		// return tweetList;
+
 	}
-	
 
 }
-
-
-
