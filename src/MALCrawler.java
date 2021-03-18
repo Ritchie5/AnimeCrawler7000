@@ -145,9 +145,19 @@ public class MALCrawler {
 			// ================================Synopsis================================
 			String description = e.select("p[itemprop = description]").text().replace("[Written by MAL Rewrite]", "");
 			if (null != e.select("p[itemprop = description]").first())
-				details += "\nSynopsis:  " + description;
+				details += "\n\nSynopsis: \n" + description;
 		}
-
+		
+		details += "\n\nRecommendations: \n|| ";
+		for (Element e : body2.select("li")) {
+			// ================================Recommendations================================
+			String recommendations = e.select("span.title.fs10").text();
+			if(null != e.select("span.title.fs10").first())
+			{
+				details += recommendations + " || ";
+			}
+		}
+		
 		// Return details string
 		return details;
 	}
