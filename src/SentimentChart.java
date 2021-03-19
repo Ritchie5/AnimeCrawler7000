@@ -28,7 +28,7 @@ public class SentimentChart extends JFrame {
 
 		ChartPanel panel = new ChartPanel(chart);
 		setContentPane(panel);
-		setSize(800, 400);
+		setSize(500, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
@@ -57,10 +57,6 @@ public class SentimentChart extends JFrame {
 		NLP.getScores(NLP.sentimentArray); // get the scores from the sentimentArray and find total score, avr score, total tweets
 		NLP.getPercentage(NLP.sentimentArray);
 		
-//		NLP.getScores(sentimentArray)[0]; // total score
-//		NLP.getScores(sentimentArray)[1]; // tweet count
-//		NLP.getScores(sentimentArray)[2]; // average score
-
 		value[0]=(int) NLP.getPercentage(NLP.sentimentArray)[0]; // % of tweets negative in double
 		value[1]=(int) NLP.getPercentage(NLP.sentimentArray)[1]; // % of tweets neutral in double
 		value[2]=(int) NLP.getPercentage(NLP.sentimentArray)[2]; // % of tweets positive in double

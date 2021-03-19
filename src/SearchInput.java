@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public class SearchInput {
 	private String animeInput;
 	private String selectedAnime;
-	public String animeTitle;
+	private String animeTitle;
 
 	public SearchInput() {
 
