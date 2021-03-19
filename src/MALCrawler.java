@@ -10,7 +10,10 @@ import org.jsoup.select.Elements;
 import org.jsoup.Connection;
 
 public class MALCrawler {
-	// Connects to MAL top airing anime URL to crawl for data
+	/**
+	* Connects to MAL top airing anime URL to crawl for data
+	* @return HashMap<Rank number, Anime Name>
+	*/
 	public static HashMap<Integer, String> topAnimes() throws IOException {
 		int number = 0;
 
@@ -37,8 +40,12 @@ public class MALCrawler {
 		// Return HashMap<Rank number, Anime Name>
 		return map;
 	}
-
-	// Connects to MAL search URL to crawl for data
+	
+	/**
+	* Connects to MAL search URL to crawl for data
+	* @param searchStr, User's search input string
+	* @return Return ArrayList<Anime Name, Anime Link> if successfully connected, Return null if not able to connected
+	*/
 	public static ArrayList<SearchDetails> searchAnime(String searchStr) throws IOException {
 		String url = "https://myanimelist.net/anime.php?cat=anime&q=";
 
@@ -91,8 +98,12 @@ public class MALCrawler {
 		// return null
 		return list;
 	}
-
-	// Gets the link of the selected anime to connect to the page
+	
+	/**
+	* Gets the link of the selected anime to connect to the page
+	* @param link, Selected anime's link
+	* @return Return string containing selected anime details
+	*/
 	public static String selectedAnime(String link) throws IOException {
 		String details = "";
 		// Connection
