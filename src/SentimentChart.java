@@ -14,7 +14,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class SentimentChart extends JFrame {
 	
-	public SentimentChart(String appTitle) throws IOException {
+	public SentimentChart(String appTitle, String animeTitle) throws IOException {
 		super(appTitle);
 
 		// Create Dataset
