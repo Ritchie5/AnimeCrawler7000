@@ -1,14 +1,24 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Abstract class containing class variables, getter and setter used for MALSearch().
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
 abstract class SearchInput {
 	private String animeInput; //user input of anime 
 	private String selectedAnime; //user choice of anime 
 	private String animeTitle; //anime title of the selected anime 
-
 /**
- * create a new searchInput object with given animeInput and selectedAnime
+ * Create empty SearchInput.
+ */
+	SearchInput(){
+		
+	}
+/**
+ * create a new searchInput object with given animeInput and selectedAnime.
  * @param animeInput set anime input that user searched. 
  * @param selectedAnime set select anime of selected anime.
  * @param animetitle set anime title of selected anime.
