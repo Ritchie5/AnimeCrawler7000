@@ -48,35 +48,33 @@ public class HomePageGUI extends JFrame{
 
 	}
 	
-	/**
-	 * count the number of button clicks to differentiate between searching for an anime and selecting an anime
-	 */
+	
+	 // count the number of button clicks to differentiate between searching for an anime and selecting an anime
+	 
 	public int search;
-	/**
-	 * store the result of the top 30 anime data crawl from MyAnimeList
-	 */
+	//store the result of the top 30 anime data crawl from MyAnimeList
+	 
 	public String top30anime;
-	/**
-	 * store the title of the searched anime
-	 */
+	
+	 // store the title of the searched anime
+	 
 	public String searchedanime;
-	/**
-	 * store the searched input by user
-	 */
+	
+	 //store the searched input by user
+	 
 	public String animesearched;
-	/**
-	 * counter used for paging between tweets
-	 */
+	
+	 //counter used for paging between tweets
+	 
 	public int i = 0;
-	/**
-	 * Constructor for accessing the methods in MALSearch
-	 */
+	
+	 //Constructor for accessing the methods in MALSearch
+	 
 	public MALSearch mal = new MALSearch();
 
-	/**
-	 * Load the list of top 30 anime from MyAnimeList that will be loaded onto the main Frame
-	 * call homeGUI() method 
-	 */
+	//Load the list of top 30 anime from MyAnimeList that will be loaded onto the main Frame
+	 //call homeGUI() method 
+	
 	public HomePageGUI() {
 		setTop30Anime();
 		homeGUI();
@@ -134,9 +132,9 @@ public class HomePageGUI extends JFrame{
 		JButton homeBtn = new JButton("Home");
 		homeBtn.setSize(30, 40);
 		homeBtn.setBackground(new Color(204, 153, 204));
-		/**
-		 * set button and its design for redirecting to Twitter crawl result.
-		 */
+		
+		// set button and its design for redirecting to Twitter crawl result.
+		 
 		JButton twitterBtn = new JButton("Twitter");
 		twitterBtn.setSize(30, 40);
 		twitterBtn.setBackground(new Color(204, 153, 204));
