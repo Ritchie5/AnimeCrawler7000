@@ -17,13 +17,12 @@
 	<classpathentry kind="lib" path="lib/opencsv-3.8.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-corenlp-4.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/twitter4j-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-4.2.0-models.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.5.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jcommon"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jfreechart"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NLP"/>
-	<classpathentry kind="lib" path="D:/SIT/Trimester2/1009/EclipseStuff/stanford-corenlp-4.2.0-models.jar"/>
-	<classpathentry kind="lib" path="D:/SIT/Trimester2/1009/EclipseStuff/jfreechart-1.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/SIT/Trimester2/1009/EclipseStuff/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="D:/SIT/Trimester2/1009/EclipseStuff/commons-lang3-3.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
