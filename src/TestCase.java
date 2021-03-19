@@ -22,7 +22,7 @@ class TestCase {
 	 */
 	void setUp() throws Exception {
 		details = new SearchDetails();
-		malSearch = new MALSearch("pikachu", "1");
+		malSearch = new MALSearch("pikachu", "1", "Pokemon: Pichu to Pikachu");
 		twitterSearch = new TwitterSearch();
 	}
 	
