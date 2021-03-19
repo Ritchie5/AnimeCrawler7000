@@ -14,7 +14,7 @@ public class MALSearch extends SearchInput {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String top30() throws IOException {
+	public String CrawlMALData() throws IOException {
 		String Top30;
 
 		// TOP AIRING ANIME
@@ -30,15 +30,15 @@ public class MALSearch extends SearchInput {
 		return Top30;
 	}
 
-	public String searchAnime() throws IOException {
+	public String CrawlMALData(String animeInput) throws IOException {
 		
 		//For Jtestunit
-		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty())
+		if (MALCrawler.searchAnime(animeInput).isEmpty())
 		{
 			throw new IllegalArgumentException("List null!");
 		}
 		
-		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty()) // return invalid if the hashmap is empty
+		if (MALCrawler.searchAnime(animeInput).isEmpty()) // return invalid if the hashmap is empty
 		{
 			return "Invalid Input, please try again!";
 		} else {
@@ -46,7 +46,7 @@ public class MALSearch extends SearchInput {
 			String Anime = "Please input the number of the anime you want to choose.\n";
 
 			// Print out the titles
-			for (SearchDetails searchedResult : MALCrawler.searchAnime(super.getAnimeInput())) {
+			for (SearchDetails searchedResult : MALCrawler.searchAnime(animeInput)) {
 				numberTitle++;
 				if (numberTitle < 31) {
 					Anime += " " + numberTitle + ": " + searchedResult.getTitle() + "\n";
@@ -58,8 +58,7 @@ public class MALSearch extends SearchInput {
 		}
 	}
 
-	public String animeDetails() throws IOException {
-		int numberInput = Integer.valueOf(super.getSelectedAnime());
+	public String CrawlMALData(int numberInput) throws IOException {
 		int number = 0;
 		String animeDetails = "";
 		

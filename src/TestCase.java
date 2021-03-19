@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestCase {
-	SearchInput input;
 	SearchDetails details;
 	
 	MALSearch malSearch;
@@ -16,7 +15,6 @@ class TestCase {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		input = new SearchInput();
 		details = new SearchDetails();
 		
 		malSearch = new MALSearch("pikachu", "1");
@@ -30,29 +28,29 @@ class TestCase {
 	
 	@Test
 	void testValidAnimeInput() {
-		input.setAnimeInput("pikachu");
-		assertEquals("pikachu", input.getAnimeInput());
+		malSearch.setAnimeInput("pikachu");
+		assertEquals("pikachu", malSearch.getAnimeInput());
 	}
 
 	@Test
 	void testInvalidAnimeInput() {
-		input.setAnimeInput("!@#");
-		assertEquals("", input.getAnimeInput());
+		malSearch.setAnimeInput("!@#");
+		assertEquals("", malSearch.getAnimeInput());
 	}
 	
 	@Test
 	void testValidSelectedAnime() {
-		input.setSelectedAnime("1");
-		assertEquals("1", input.getSelectedAnime());
+		malSearch.setSelectedAnime("1");
+		assertEquals("1", malSearch.getSelectedAnime());
 	}
 	
 	@Test
 	/**
 	 * Test class variable for MALSearch class
 	 */
-	void testvalidSeletedanimeTitle() {
-		input.setSelectedAnimetitle("pikachu");
-		assertEquals("pikachu", input.getSelectedAnimetitle());
+	void testValidSeletedAnimeTitle() {
+		malSearch.setSelectedAnimetitle("pikachu");
+		assertEquals("pikachu", malSearch.getSelectedAnimetitle());
 	}
 	
 	/**
@@ -88,17 +86,17 @@ class TestCase {
 	
 	@Test
 	void testValidMALSearchTop30() throws IOException {
-		assertNotEquals("", malSearch.top30());
+		assertNotEquals("", malSearch.CrawlMALData());
 	}
 	
 	@Test
 	void testValidMALSearchAnime() throws IOException {
-		assertNotEquals("", malSearch.searchAnime());
+		assertNotEquals("", malSearch.CrawlMALData("pikachu"));
 	}
 	
 	@Test
 	void testValidMALSearchAnimeDetails() throws IOException {
-		assertNotEquals("", malSearch.animeDetails());
+		assertNotEquals("", malSearch.CrawlMALData(1));
 	}
 	
 	@Test
