@@ -28,13 +28,13 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class HomePageGUI {
-	public static int search;
+	public int search;
 
 	public String top30anime;
 	public String searchedanime;
 	public String animesearched;
 
-	public static int i = 0;
+	public int i = 0;
 
 	public static MALSearch mal = new MALSearch();
 
@@ -92,7 +92,7 @@ public class HomePageGUI {
 		back.setSize(30, 40);
 		back.setBackground(new Color(204, 153, 204));
 		back.setEnabled(false);
-		
+
 		JButton analysis = new JButton("analysis");
 		analysis.setSize(30, 40);
 		analysis.setBackground(new Color(204, 153, 204));
@@ -173,7 +173,7 @@ public class HomePageGUI {
 						String checker = mal.getSelectedAnime();
 						if (checker != null) {
 							try {
-								
+
 								selectedanime = mal.animeDetails();
 							} catch (IOException e1) {
 
@@ -186,6 +186,7 @@ public class HomePageGUI {
 							setsearchedanime(temp);
 							searchbutton.setEnabled(false);
 							searchTxtField.setText(null);
+							search=0;
 						} else {
 							searchTxtField.setText(null);
 							center.setText(animesearched);
@@ -206,7 +207,6 @@ public class HomePageGUI {
 				center.setText(top30anime);
 				searchbutton.setEnabled(true);
 				searchTxtField.setText(null);
-				search = 0;
 				analysis.setEnabled(false);
 				analysis.setVisible(false);
 			}
@@ -221,8 +221,8 @@ public class HomePageGUI {
 				try {
 					center.setText("Fetching data... Please wait...");
 					center.paintImmediately(center.getVisibleRect());
-					getTweets.query(searchedanime); 
-					String result = getTweets1.topTweets(i,"animeCrawler7000.csv");
+					getTweets.query(searchedanime);
+					String result = getTweets1.topTweets(i, "animeCrawler7000.csv");
 					System.out.print(result);
 					center.setText(result);
 					center.paintImmediately(center.getVisibleRect());
@@ -230,8 +230,7 @@ public class HomePageGUI {
 					back.setEnabled(true);
 					analysis.setEnabled(true);
 					analysis.setVisible(true);
-					
-					
+
 				} catch (TwitterException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -239,7 +238,7 @@ public class HomePageGUI {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				twitterBtn.setEnabled(false);
 			}
 		});
@@ -264,7 +263,7 @@ public class HomePageGUI {
 				center.setText(result);
 			}
 		});
-		
+
 		analysis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -273,10 +272,10 @@ public class HomePageGUI {
 					SentimentChart sentimentbar = new SentimentChart("Sentiment Chart");
 				} catch (IOException e1) {
 					e1.printStackTrace();
-				} 	
+				}
 			}
 		});
-		
+
 		// add panel to frame
 		mainFrame.getContentPane().add(navBar, BorderLayout.NORTH);
 		mainFrame.getContentPane().add(center, BorderLayout.CENTER);
