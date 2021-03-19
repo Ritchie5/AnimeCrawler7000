@@ -166,7 +166,6 @@ public class HomePageGUI {
 					}
 
 					if (search >= 2) {
-						center.setText(null);
 						String input = searchTxtField.getText();
 						String selectedanime = null;
 						mal.setSelectedAnime(input);
@@ -182,14 +181,12 @@ public class HomePageGUI {
 							center.setText(selectedanime);
 							twitterBtn.setEnabled(true);
 							String temp = mal.getSelectedAnimetitle();
-							System.out.print(temp);
 							setsearchedanime(temp);
 							searchbutton.setEnabled(false);
 							searchTxtField.setText(null);
 							search=0;
 						} else {
 							searchTxtField.setText(null);
-							center.setText(animesearched);
 							search++;
 						}
 					}
@@ -204,11 +201,12 @@ public class HomePageGUI {
 				twitterBtn.setEnabled(false);
 				next.setEnabled(false);
 				back.setEnabled(false);
-				center.setText(top30anime);
-				searchbutton.setEnabled(true);
-				searchTxtField.setText(null);
 				analysis.setEnabled(false);
 				analysis.setVisible(false);
+				searchTxtField.setText(null);
+				center.setText(top30anime);
+				searchbutton.setEnabled(true);
+
 			}
 		});
 
@@ -225,7 +223,6 @@ public class HomePageGUI {
 					String result = getTweets1.topTweets(i, "animeCrawler7000.csv");
 					System.out.print(result);
 					center.setText(result);
-					center.paintImmediately(center.getVisibleRect());
 					next.setEnabled(true);
 					back.setEnabled(true);
 					analysis.setEnabled(true);
