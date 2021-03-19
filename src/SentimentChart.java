@@ -14,15 +14,15 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class SentimentChart extends JFrame {
 	
-	public SentimentChart(String appTitle) throws IOException {
+	public SentimentChart(String appTitle, String animeName) throws IOException {
 		super(appTitle);
 
 		// Create Dataset
 		CategoryDataset dataset = createDataset();
 
 		// Create chart
-		JFreeChart chart = ChartFactory.createBarChart("Sentiment analysis", // Chart Title
-				"Name", // Category axis
+		JFreeChart chart = ChartFactory.createBarChart(animeName, // Chart Title
+				"Sentiment Analysis", // Category axis
 				"Popularity percentage", // Value axis
 				dataset, PlotOrientation.VERTICAL, true, true, false);
 

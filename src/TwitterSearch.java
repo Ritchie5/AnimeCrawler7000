@@ -28,6 +28,11 @@ public class TwitterSearch {
 			System.out.println("cannot read topTweets");
 			e.printStackTrace();
 		}
+		
+		if(Anime == "Most Favorited Tweets\n")
+		{
+			return null;
+		}
 		return Anime;
 	}
 }

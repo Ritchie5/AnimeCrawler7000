@@ -1,7 +1,7 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SearchInput {
+abstract class SearchInput {
 	private String animeInput;
 	private String selectedAnime;
 	private String animeTitle;
@@ -17,14 +17,6 @@ public class SearchInput {
 
 	public String getAnimeInput() {
 		return animeInput;
-	}
-	
-	public String getSelectedAnimetitle() {
-		return animeTitle;
-	}
-
-	public void setSelectedAnimetitle(String animeTitle) {
-		this.animeTitle = animeTitle;
 	}
 
 	public boolean setAnimeInput(String animeInput) {
@@ -47,6 +39,14 @@ public class SearchInput {
 			this.animeInput = animeInput;
 			return true;
 		}
+	}
+	
+	public String getSelectedAnimetitle() {
+		return animeTitle;
+	}
+
+	public void setSelectedAnimetitle(String animeTitle) {
+		this.animeTitle = animeTitle;
 	}
 
 	public String getSelectedAnime() {

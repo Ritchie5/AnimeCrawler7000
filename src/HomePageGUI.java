@@ -36,7 +36,7 @@ public class HomePageGUI {
 
 	public int i = 0;
 
-	public static MALSearch mal = new MALSearch();
+	public MALSearch mal = new MALSearch();
 
 	public HomePageGUI() {
 		setTop30Anime();
@@ -49,7 +49,7 @@ public class HomePageGUI {
 
 	public void setTop30Anime() {
 		try {
-			this.top30anime = mal.top30();
+			this.top30anime = mal.CrawlMALData();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -153,7 +153,7 @@ public class HomePageGUI {
 							searchTxtField.setText(null);
 						} else {
 							try {
-								animesearched = mal.searchAnime();
+								animesearched = mal.CrawlMALData(mal.getAnimeInput());
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
@@ -173,7 +173,7 @@ public class HomePageGUI {
 						if (checker != null) {
 							try {
 
-								selectedanime = mal.animeDetails();
+								selectedanime = mal.CrawlMALData(Integer.valueOf(checker));
 							} catch (IOException e1) {
 
 								e1.printStackTrace();
@@ -245,7 +245,19 @@ public class HomePageGUI {
 				i += 5;
 				TwitterSearch getTweets = new TwitterSearch();
 				String result = getTweets.topTweets(i, "animeCrawler7000.csv");
-				center.setText(result);
+				if(result == null) 
+				{
+					i -= 5;
+					if (i < 0) {
+						i = 0;
+					}
+					result = getTweets.topTweets(i, "animeCrawler7000.csv");
+					center.setText(result);
+				}
+				else 
+				{
+					center.setText(result);
+				}
 			}
 		});
 
