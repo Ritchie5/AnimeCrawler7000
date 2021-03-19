@@ -2,18 +2,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
 public class MALSearch extends SearchInput {
 	public MALSearch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+/**
+ * 
+ * create new MALSearch object given animeInput and selectedAnime
+ * @param animeInput set anime that user searched. 
+ * @param selectedAnime set anime title of selected anime
+ */
 	public MALSearch(String animeInput, String selectedAnime) {
 		super(animeInput, selectedAnime);
-		// TODO Auto-generated constructor stub
 	}
-
+/**
+ * crawl MyAnimeList(MAL) data and get the top 30 anime.
+ * @return Top30 anime in MAL. 
+ * @throws IOException
+ */
 	public String CrawlMALData() throws IOException {
 		String Top30;
 
@@ -29,7 +41,12 @@ public class MALSearch extends SearchInput {
 		}
 		return Top30;
 	}
-
+/**
+ * Get the anime title and details of selected Anime.
+ * @param animeInput numberTile of searchedAnime 
+ * @return anime numbering and title. 
+ * @throws IOException 
+ */
 	public String CrawlMALData(String animeInput) throws IOException {
 		
 		//For Jtestunit
@@ -57,7 +74,12 @@ public class MALSearch extends SearchInput {
 			// Access selectedAnime and print out the details using the selected anime link
 		}
 	}
-
+/**
+ * Get selected Anime details. 
+ * @param numberInput new value of the selected anime numberTitle.
+ * @return selected anime details. 
+ * @throws IOException
+ */
 	public String CrawlMALData(int numberInput) throws IOException {
 		int number = 0;
 		String animeDetails = "";
