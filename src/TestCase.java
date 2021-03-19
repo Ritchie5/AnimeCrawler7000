@@ -50,7 +50,7 @@ class TestCase {
 	/**
 	 * Test class variable for MALSearch class
 	 */
-	void testanimeTitle() {
+	void testvalidSeletedanimeTitle() {
 		input.setSelectedAnimetitle("pikachu");
 		assertEquals("pikachu", input.getSelectedAnimetitle());
 	}
