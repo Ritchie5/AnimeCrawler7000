@@ -172,7 +172,8 @@ public class HomePageGUI {
 						if (selectedanime != null) {
 							center.setText(selectedanime);
 							twitterBtn.setEnabled(true);
-							String temp = mal.getSelectedAnime();
+							String temp = mal.getSelectedAnimetitle();
+							System.out.print(temp);
 							setsearchedanime(temp);
 							searchbutton.setEnabled(false);
 							searchTxtField.setText(null);
@@ -216,7 +217,7 @@ public class HomePageGUI {
 					center.paintImmediately(center.getVisibleRect());
 					next.setEnabled(true);
 					back.setEnabled(true);
-					SentimentChart sentimentbar = new SentimentChart("Sentiment Chart"); 
+					//SentimentChart sentimentbar = new SentimentChart("Sentiment Chart"); 
 					
 				} catch (TwitterException e1) {
 					// TODO Auto-generated catch block

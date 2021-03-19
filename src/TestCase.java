@@ -47,10 +47,23 @@ class TestCase {
 	}
 	
 	@Test
+	/**
+	 * Test class variable for MALSearch class
+	 */
+	void testanimeTitle() {
+		input.setSelectedAnimetitle("pikachu");
+		assertEquals("pikachu", input.getSelectedAnimetitle());
+	}
+	
+	/**
+	 * Test class variable for MALCrawler class
+	 */
+	@Test
 	void testValidAnimeTitle() {
 		details.setTitle("Pokemon: Pichu to Pikachu");
 		assertEquals("Pokemon: Pichu to Pikachu", details.getTitle());
 	}
+
 	
 	@Test
 	void testValidAnimeLink() {

@@ -69,7 +69,7 @@ public class MALSearch extends SearchInput {
 		for (SearchDetails searchedResult : MALCrawler.searchAnime(super.getAnimeInput())) {
 			number++;
 			if (number == numberInput) {
-				super.setSelectedAnime(searchedResult.getTitle());
+				super.setSelectedAnimetitle(searchedResult.getTitle());
 				animeDetails = MALCrawler.selectedAnime(searchedResult.getLink());
 			}
 		}

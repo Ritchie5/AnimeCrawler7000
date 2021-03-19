@@ -25,7 +25,7 @@ public class TwitterSearch {
 				counter++;
 			}
 		} catch (Exception e) {
-			System.out.println("cannot read top7Tweets");
+			System.out.println("cannot read topTweets");
 			e.printStackTrace();
 		}
 		return Anime;
