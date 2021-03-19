@@ -18,14 +18,6 @@ abstract class SearchInput {
 	public String getAnimeInput() {
 		return animeInput;
 	}
-	
-	public String getSelectedAnimetitle() {
-		return animeTitle;
-	}
-
-	public void setSelectedAnimetitle(String animeTitle) {
-		this.animeTitle = animeTitle;
-	}
 
 	public boolean setAnimeInput(String animeInput) {
 		// Regex to check if a string contains only special characters
@@ -47,6 +39,14 @@ abstract class SearchInput {
 			this.animeInput = animeInput;
 			return true;
 		}
+	}
+	
+	public String getSelectedAnimetitle() {
+		return animeTitle;
+	}
+
+	public void setSelectedAnimetitle(String animeTitle) {
+		this.animeTitle = animeTitle;
 	}
 
 	public String getSelectedAnime() {
