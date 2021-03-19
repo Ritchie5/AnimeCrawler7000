@@ -8,7 +8,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.Connection;
-
+/**
+* To extract data from myanimelist.net and the result returned will be printed on the application.
+*/
 public class MALCrawler {
 	/**
 	* Using JSoup library, it connects to MAL top airing anime HTML page to crawl for data.

@@ -7,6 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Test case classes: SearchDetails, MALSearch, MALCrawler, SearchDetails, SearchInput, TwitterSearch 
+*/
 class TestCase {
 	SearchDetails details;
 	MALSearch malSearch;
@@ -14,7 +17,7 @@ class TestCase {
 	
 	@BeforeEach
 	/**
-	 * Instantiates new objects; searchDetails(), MALSearch(), TwitterSearch().
+	 * Instantiates new objects; SearchDetails(), MALSearch(), TwitterSearch().
 	 * Set MALSearch constructor's parameter.
 	 */
 	void setUp() throws Exception {

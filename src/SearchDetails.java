@@ -1,3 +1,6 @@
+/**
+* Encapsulate SearchDetails class
+*/
 public class SearchDetails {
 	private String title;
 	private String link;
