@@ -92,6 +92,12 @@ public class HomePageGUI {
 		back.setSize(30, 40);
 		back.setBackground(new Color(204, 153, 204));
 		back.setEnabled(false);
+		
+		JButton analysis = new JButton("analysis");
+		analysis.setSize(30, 40);
+		analysis.setBackground(new Color(204, 153, 204));
+		analysis.setEnabled(false);
+		analysis.setVisible(false);
 
 		// search field
 		JTextField searchTxtField = new JTextField();
@@ -104,8 +110,9 @@ public class HomePageGUI {
 
 		navBar.add(homeBtn);
 		navBar.add(twitterBtn);
-		navBar.add(next);
 		navBar.add(back);
+		navBar.add(next);
+		navBar.add(analysis);
 		navBar.add(searchTxtField);
 		navBar.add(searchbutton);
 		navBar.setVisible(true);
@@ -198,6 +205,8 @@ public class HomePageGUI {
 				searchbutton.setEnabled(true);
 				searchTxtField.setText(null);
 				search = 0;
+				analysis.setEnabled(false);
+				analysis.setVisible(false);
 			}
 		});
 
@@ -217,7 +226,9 @@ public class HomePageGUI {
 					center.paintImmediately(center.getVisibleRect());
 					next.setEnabled(true);
 					back.setEnabled(true);
-					//SentimentChart sentimentbar = new SentimentChart("Sentiment Chart"); 
+					analysis.setEnabled(true);
+					analysis.setVisible(true);
+					
 					
 				} catch (TwitterException e1) {
 					// TODO Auto-generated catch block
@@ -251,7 +262,19 @@ public class HomePageGUI {
 				center.setText(result);
 			}
 		});
-
+		
+		analysis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					center.setText("Fetching data... Please wait...Process could take a while");
+					center.paintImmediately(center.getVisibleRect());
+					SentimentChart sentimentbar = new SentimentChart("Sentiment Chart");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} 	
+			}
+		});
+		
 		// add panel to frame
 		mainFrame.getContentPane().add(navBar, BorderLayout.NORTH);
 		mainFrame.getContentPane().add(center, BorderLayout.CENTER);
