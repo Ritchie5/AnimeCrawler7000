@@ -30,9 +30,9 @@ import java.awt.event.ActionEvent;
 public class HomePageGUI {
 	public static int search;
 
-	public static String top30anime;
-	public static String searchedanime;
-	public static String animesearched;
+	public String top30anime;
+	public String searchedanime;
+	public String animesearched;
 
 	public static int i = 0;
 
@@ -43,13 +43,13 @@ public class HomePageGUI {
 		homeGUI();
 	}
 
-	public static void setsearchedanime(String searched) {
-		searchedanime = searched;
+	public void setsearchedanime(String searched) {
+		this.searchedanime = searched;
 	}
 
-	public static void setTop30Anime() {
+	public void setTop30Anime() {
 		try {
-			top30anime = mal.top30();
+			this.top30anime = mal.top30();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -169,14 +169,16 @@ public class HomePageGUI {
 						center.setText(null);
 						String input = searchTxtField.getText();
 						String selectedanime = null;
-						try {
-							mal.setSelectedAnime(input);
-							selectedanime = mal.animeDetails();
-						} catch (IOException e1) {
+						mal.setSelectedAnime(input);
+						String checker = mal.getSelectedAnime();
+						if (checker != null) {
+							try {
+								
+								selectedanime = mal.animeDetails();
+							} catch (IOException e1) {
 
-							e1.printStackTrace();
-						}
-						if (selectedanime != null) {
+								e1.printStackTrace();
+							}
 							center.setText(selectedanime);
 							twitterBtn.setEnabled(true);
 							String temp = mal.getSelectedAnimetitle();
