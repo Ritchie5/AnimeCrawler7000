@@ -23,19 +23,16 @@ public class MALSearch extends SearchInput {
 		for (String anime : MALCrawler.topAnimes().values()) {
 			numberRank++;
 			if (numberRank < 31) {
-				if (numberRank < 10) {
-					Top30 += numberRank + ":  ";
-					Top30 += anime + "\n";
-				} else {
 					Top30 += numberRank + ": ";
 					Top30 += anime + "\n";
-				}
 			}
 		}
 		return Top30;
 	}
 
 	public String searchAnime() throws IOException {
+		
+		//For Jtestunit
 		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty())
 		{
 			throw new IllegalArgumentException("List null!");
@@ -69,7 +66,7 @@ public class MALSearch extends SearchInput {
 		for (SearchDetails searchedResult : MALCrawler.searchAnime(super.getAnimeInput())) {
 			number++;
 			if (number == numberInput) {
-				super.setSelectedAnime(searchedResult.getTitle());
+				super.setSelectedAnimetitle(searchedResult.getTitle());
 				animeDetails = MALCrawler.selectedAnime(searchedResult.getLink());
 			}
 		}

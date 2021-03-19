@@ -12,8 +12,7 @@ public class TwitterSearch {
 
 		CSVReader reader = null;
 		try {
-			reader = new CSVReader(new FileReader(csv), ',', '\'',
-					1);
+			reader = new CSVReader(new FileReader(csv));
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null && counter < (6 + x)) {
 
@@ -26,7 +25,7 @@ public class TwitterSearch {
 				counter++;
 			}
 		} catch (Exception e) {
-			System.out.println("cannot read top7Tweets");
+			System.out.println("cannot read topTweets");
 			e.printStackTrace();
 		}
 		return Anime;
