@@ -97,12 +97,13 @@ public class HomePageGUI extends JFrame {
 	}
 
 	/**
-	 * Load and Display: List of top 30 anime List of anime based on user search
-	 * input Details of Selected Anime List of recommended anime based on the
-	 * selected anime List of tweets that are related to the anime Display the
-	 * result of the sentimental analysis using BarChart.
-	 * 
-	 */
+     * Load and Display: 
+     * List of top 30 anime List of anime based on user search input 
+     * Details of Selected Anime List of recommended anime based on the selected anime
+     * List of tweets that are related to the anime 
+     * Display the result of the sentimental analysis using BarChart.
+     * 
+     */
 	public void homeGUI() {
 
 		// Set the Title, Size, Layout and close operation of the application
