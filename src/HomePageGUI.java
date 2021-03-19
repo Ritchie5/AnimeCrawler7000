@@ -212,8 +212,8 @@ public class HomePageGUI extends JFrame{
 		
 		/*
 		 * Take User input: 
-		 * search and display the list of anime based on the search
-		 * select and display the details of the selected anime
+		 * 1st search: search and display the list of anime based on the search
+		 * 2nd search and more: Select and display the details of the selected anime
 		 * ExceptionHandling are implemented to prevent null or invalid search
 		 */
 		searchbutton.addActionListener(new ActionListener() {
@@ -301,7 +301,6 @@ public class HomePageGUI extends JFrame{
 					center.paintImmediately(center.getVisibleRect());
 					getTweets.query(searchedanime);
 					String result = getTweets1.topTweets(i, "animeCrawler7000.csv");
-					System.out.print(result);
 					center.setText(result);
 					next.setEnabled(true);
 					back.setEnabled(true);
