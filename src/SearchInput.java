@@ -1,30 +1,22 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Team Pikachuuuuuuu
- * @version 1.8
- * @since 1.0
- * 
- */
+
 abstract class SearchInput {
 	private String animeInput; //user input of anime 
 	private String selectedAnime; //user choice of anime 
 	private String animeTitle; //anime title of the selected anime 
-/**
- * create an empty SearchInput
- */
-	public SearchInput() {
 
-	}
 /**
  * create a new searchInput object with given animeInput and selectedAnime
- * @param animeInput set anime that user searched. 
- * @param selectedAnime set anime title of selected anime
+ * @param animeInput set anime input that user searched. 
+ * @param selectedAnime set select anime of selected anime.
+ * @param animetitle set anime title of selected anime.
  */
-	public SearchInput(String animeInput, String selectedAnime) {
+	public SearchInput(String animeInput, String selectedAnime, String animeTitle) {
 		this.animeInput = animeInput;
 		this.selectedAnime = selectedAnime;
+		this.animeTitle = animeTitle;
 	}
 /**
  * Title of the searched anime
