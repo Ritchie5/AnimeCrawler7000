@@ -12,14 +12,14 @@ public class MALSearch extends SearchInput {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-/**
- * 
- * create new MALSearch object given animeInput and selectedAnime
- * @param animeInput set anime that user searched. 
- * @param selectedAnime set anime title of selected anime
- */
-	public MALSearch(String animeInput, String selectedAnime) {
-		super(animeInput, selectedAnime);
+	/**
+	 * Sets the parent class variables, SearchInput()
+	 * @param animeInput sets animeInput of parent class 
+	 * @param selectedAnime sets selectedAnime of parent class
+	 * @param animeTitle set animeTitle of parent class
+	 */
+	public MALSearch(String animeInput, String selectedAnime, String animeTitle) {
+		super(animeInput, selectedAnime, animeTitle);
 	}
 /**
  * crawl MyAnimeList(MAL) data and get the top 30 anime.

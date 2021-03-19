@@ -12,6 +12,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+/**
+ *Displays a bar chart containing sentiment analysis data.
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
+
 public class SentimentChart extends JFrame {
 	/**
 	 * SentimentChart creates a Jframe displaying a barchart. Barchart displays

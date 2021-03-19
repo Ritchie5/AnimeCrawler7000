@@ -3,6 +3,13 @@ import java.io.FileReader;
 
 import com.opencsv.CSVReader;
 
+/**
+ * Opens CSV files and stores 5 tweets into a string for GUI to display.
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
+
 public class TwitterSearch {
 	/**
 	 * topTweets opens CSV file created by TwitterCrawler(), reads CSV file line by
