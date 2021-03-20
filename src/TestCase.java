@@ -14,6 +14,7 @@ class TestCase {
 	SearchDetails details;
 	MALSearch malSearch;
 	TwitterSearch twitterSearch;
+	TwitterCrawler twitterCrawler;
 	
 	@BeforeEach
 	/**
@@ -155,6 +156,18 @@ class TestCase {
 	 */
 	void testValidMALSearchAnimeDetails() throws IOException {
 		assertNotEquals("", malSearch.CrawlMALData(1));
+	}
+	
+	@Test
+	/**
+	 * Test invalid TwitterCrawler query string input.
+	 * This method will throw IllegalArgumentException if string inputed to query method in TwitterCrawler is null.
+	 * @exception IllegalArgumentException if search string is null
+	 */
+	void testInvalidTwitterCrawlerQuery() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			TwitterCrawler.query(null);
+		});
 	}
 	
 	@Test
