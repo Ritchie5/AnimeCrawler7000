@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,7 +23,8 @@ public class TwitterCrawler {
 	private Twitter twitter;
 
 	/**
-	 * Constructs TwitterCrawler instance configured with access tokens for Twitter API
+	 * Constructs TwitterCrawler instance configured with access tokens for Twitter
+	 * API
 	 */
 	public TwitterCrawler() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -38,33 +38,21 @@ public class TwitterCrawler {
 	}
 
 	/**
-	 * This method will search and collect tweets according to a search term and sort them by favourites count before storing them in a CSV file
-	 * A CSV file is created for search results to be stored in
-	 * CSV file will include username(twitter handles), favourites and the tweet
-	 * Using twitter4J library to connect to twitter API to crawl for tweets, 
-	 * A query is created based on the search term and is set to filter out retweets and only to collect english tweets
-	 * ArrayList tweets is created to store the search results
+	 * This method will search and collect tweets according to a search term
+	 * Use twitter4J to connect to twitter API to crawl for tweets
+	 * Query object is created based on the searchTerm and is set to filter out retweets and to only collect English tweets
+	 * ArrayList is created to store the search results
 	 * As the twitter API limits the crawler to collecting 100 tweets at a time, a while loop is used to bypass it and
 	 * collect 100 tweets at a time until 1000 tweets are collected
 	 * Collections and Comparator from java util is used to sort the ArrayList by favourites count
-	 * Data from sorted ArrayList is written into CSV file
-	 * The tweets are cleaned to remove line breaks and commas before being written into CSV file using .replaceAll() and .trim() so that it conforms nicely to CSV format 
+	 * CSVFileWrite() is called to write data from ArrayList into a csv file
 	 * @param query (searchTerm to search for tweets on Twitter)
+	 * @throws TwitterException
+	 * @throws IOException 
 	 */
 
 	// to search for tweets and add to database.
 	public void query(String searchTerm) throws TwitterException, IOException {
-		try {
-			File tweetFile = new File("animeCrawler7000.csv");
-			if (tweetFile.createNewFile()) {
-				System.out.println("File created: " + tweetFile.getName());
-			} else {
-				System.out.println("File already exists.");
-			}
-		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
-		}
 		// For JTestUnit
 		if (searchTerm == null || searchTerm.isEmpty()) {
 			throw new IllegalArgumentException("Empty search term!");
@@ -83,11 +71,6 @@ public class TwitterCrawler {
 		// create arrayList to store tweets
 		ArrayList<Status> tweets = new ArrayList<Status>();
 
-		// open writer
-		FileWriter writer = new FileWriter("animeCrawler7000.csv");
-		// Set csv headers
-		writer.write("Username,Favourites,Tweet\n");
-
 		// get tweets
 		while (tweets.size() < numTweets) {
 			if (numTweets - tweets.size() > 100) {
@@ -103,9 +86,9 @@ public class TwitterCrawler {
 
 				// add tweets to arrayList tweets
 				tweets.addAll(result.getTweets());
-				//Print out current number of collected tweets in terminal
+				// Print out current number of collected tweets in terminal
 				System.out.println("Collected " + tweets.size() + " tweets");
-				//save current tweet count for next iteration
+				// save current tweet count for next iteration
 				for (Status t : tweets) {
 					if (t.getId() < lastID) {
 						lastID = t.getId();
@@ -125,14 +108,42 @@ public class TwitterCrawler {
 				return Integer.compare(status2.getFavoriteCount(), status1.getFavoriteCount());
 			}
 		});
+		//Call CSV writer 
+		CSVFileWrite(tweets);
+	}
+	
+	/**
+	 * This method will create a CSV file and write tweet data into it
+	 * Data that will be contained in the CSV file are: Username(twitter handles), favourites and the tweet
+	 * tweets are cleaned using replaceAll() and trim() to remove line breaks, leading/trailing spaces and commas to conform to a CSV friendly format
+	 * @param tweets (ArrayList containing crawled tweets to write into CSV file)
+	 * @throws IOException
+	 */
+
+	public void CSVFileWrite(ArrayList<Status> tweets) throws IOException {
+		try {
+			File tweetFile = new File("animeCrawler7000.csv");
+			if (tweetFile.createNewFile()) {
+				System.out.println("File created: " + tweetFile.getName());
+			} else {
+				System.out.println("File already exists!");
+			}
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+		// open writer
+		FileWriter writer = new FileWriter("animeCrawler7000.csv");
+		// Set csv headers
+		writer.write("Username,Favourites,Tweet\n");
+
 		// write to file
 		for (Status t : tweets) {
 			// clean tweets before writing to CSV file
 			writer.write(t.getUser().getScreenName() + "," + t.getFavoriteCount() + ","
 					+ t.getText().trim().replaceAll("\n|\r|,", " ") + "\n");
 		}
-		//close writer
+		// close writer
 		writer.close();
 	}
-
 }
