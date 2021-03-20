@@ -29,7 +29,7 @@ public class TwitterCrawler {
 	}
 	
 	//to search for tweets and add to database. 
-	public void query(String searchTerm) throws TwitterException, IOException {
+	public String query(String searchTerm) throws TwitterException, IOException {
 		try {
 			File tweetFile = new File("animeCrawler7000.csv");
 			if (tweetFile.createNewFile()) {
@@ -106,7 +106,7 @@ public class TwitterCrawler {
 					+ t.getText().trim().replaceAll("\n|\r|,", " ") + "\n");
 		}
 		writer.close();
-
+		return searchTerm;
 	}
 
 }
