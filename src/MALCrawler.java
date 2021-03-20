@@ -8,9 +8,18 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.Connection;
-
+/**
+* To extract data from myanimelist.net and the result returned will be printed on the application.
+*/
 public class MALCrawler {
-	// Connects to MAL top airing anime URL to crawl for data
+	/**
+	* Using JSoup library, it connects to MAL top airing anime HTML page to crawl for data.
+	* This method will then create a hashmap to store integer and string.
+	* It will loop through the elements "tr.ranking-list" and selects "tr" element.
+	* Within the loop, the anime rank number and anime title will then be stored into the hashmap.
+	* Hashmap will be sorted by key (rank number) using Stream API.
+	* @return HashMap<Rank number, Anime Name>
+	*/
 	public static HashMap<Integer, String> topAnimes() throws IOException {
 		int number = 0;
 
@@ -21,7 +30,6 @@ public class MALCrawler {
 		// HashMap
 		HashMap<Integer, String> map = new HashMap<>();
 
-		// Loop through the elements "tr.ranking-list" and selects "tr" element
 		for (Element e : body.select("tr")) {
 			number++;
 			// ================================Title================================
@@ -37,8 +45,17 @@ public class MALCrawler {
 		// Return HashMap<Rank number, Anime Name>
 		return map;
 	}
-
-	// Connects to MAL search URL to crawl for data
+	
+	/**
+	* This method will first create an arraylist to store SearchDetails which contains anime title and anime link.
+	* It will then execute try catch exception to check the connection response.
+	* If connection is successful (StatusCode = 200), it will use JSoup library to connect to MAL search HTML page to crawl for data.
+	* The method will loop through the elements "div.js-categories-seasonal.js-block-list.list" and selects "tr" element.
+	* Within the loop, the selected data will be stored in the ArrayList
+	* @param searchStr (User's search input string)
+	* @return Return ArrayList<Anime Name, Anime Link> if successfully connected, Return null if not able to connected
+	* @exception IllegalArgumentException if search string is null
+	*/
 	public static ArrayList<SearchDetails> searchAnime(String searchStr) throws IOException {
 		String url = "https://myanimelist.net/anime.php?cat=anime&q=";
 
@@ -63,8 +80,6 @@ public class MALCrawler {
 				Document doc = Jsoup.connect(url + searchStr).referrer(url + searchStr).timeout(6000).get();
 				Elements body = doc.select("div.js-categories-seasonal.js-block-list.list");
 
-				// Loop through the elements "div.js-categories-seasonal.js-block-list.list" and
-				// selects "tr" element
 				// Sublist to skip first iteration as it is invalid & pick the first 15 titles
 				for (Element e : body.select("tr").subList(1, Math.min(16, body.select("tr").size()))) {
 					// ================================Title================================
@@ -87,12 +102,21 @@ public class MALCrawler {
 			e.printStackTrace();
 		}
 
-		// Return ArrayList<Anime Name, Anime Link> if successfully connected else
-		// return null
+		// Return ArrayList<Anime Name, Anime Link> if successfully connected else return null
 		return list;
 	}
-
-	// Gets the link of the selected anime to connect to the page
+	
+	/**
+	* This method will first create a string to store the selected anime details.
+	* Details includes Title, Type, Episodes, Status, Date, Genres, Ratings, Synopsis and Recommendations.
+	* Using JSoup library, it connects to the selected anime page on MAL to crawl for data.
+	* The method will have 3 forloops to loop through 3 different element bodies.
+	* Within the first loop, a switch case will be used to compare the string of the selected element.
+	* If the value compared is similar to the values of each case, the data will be stored in the string.
+	* Within the second and third loop, the selected data will be stored in the string.
+	* @param link (Selected anime's link)
+	* @return Return string containing selected anime details
+	*/
 	public static String selectedAnime(String link) throws IOException {
 		String details = "";
 		// Connection
@@ -102,7 +126,6 @@ public class MALCrawler {
 		String title = doc.select("h1.title-name.h1_bold_none").text();
 		details += "Title: " + title;
 
-		// Loop through the elements "td.borderClass" and selects "div" element
 		Elements body1 = doc.select("td.borderClass");
 		for (Element e : body1.select("div")) {
 			// Compare string
@@ -151,8 +174,8 @@ public class MALCrawler {
 		details += "\n\nRecommendations: \n|| ";
 		for (Element e : body2.select("li")) {
 			// ================================Recommendations================================
-			String recommendations = e.select("span.title.fs10").text();
-			if(null != e.select("span.title.fs10").first())
+			String recommendations = e.select("li.btn-anime span.title.fs10").text();
+			if(null != e.select("li.btn-anime span.title.fs10").first())
 			{
 				details += recommendations + " || ";
 			}

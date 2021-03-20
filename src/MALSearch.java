@@ -2,19 +2,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
 public class MALSearch extends SearchInput {
 	public MALSearch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public MALSearch(String animeInput, String selectedAnime) {
-		super(animeInput, selectedAnime);
-		// TODO Auto-generated constructor stub
+	/**
+	 * Sets the parent class variables, SearchInput()
+	 * @param animeInput sets animeInput of parent class 
+	 * @param selectedAnime sets selectedAnime of parent class
+	 * @param animeTitle set animeTitle of parent class
+	 */
+	public MALSearch(String animeInput, String selectedAnime, String animeTitle) {
+		super(animeInput, selectedAnime, animeTitle);
 	}
-
-	public String top30() throws IOException {
+/**
+ * crawl MyAnimeList(MAL) data and get the top 30 anime.
+ * @return Top30 anime in MAL. 
+ * @throws IOException
+ */
+	public String CrawlMALData() throws IOException {
 		String Top30;
 
 		// TOP AIRING ANIME
@@ -29,16 +41,21 @@ public class MALSearch extends SearchInput {
 		}
 		return Top30;
 	}
-
-	public String searchAnime() throws IOException {
+/**
+ * Get the anime title and details of selected Anime.
+ * @param animeInput numberTile of searchedAnime 
+ * @return anime numbering and title. 
+ * @throws IOException 
+ */
+	public String CrawlMALData(String animeInput) throws IOException {
 		
 		//For Jtestunit
-		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty())
+		if (MALCrawler.searchAnime(animeInput).isEmpty())
 		{
 			throw new IllegalArgumentException("List null!");
 		}
 		
-		if (MALCrawler.searchAnime(super.getAnimeInput()).isEmpty()) // return invalid if the hashmap is empty
+		if (MALCrawler.searchAnime(animeInput).isEmpty()) // return invalid if the hashmap is empty
 		{
 			return "Invalid Input, please try again!";
 		} else {
@@ -46,7 +63,7 @@ public class MALSearch extends SearchInput {
 			String Anime = "Please input the number of the anime you want to choose.\n";
 
 			// Print out the titles
-			for (SearchDetails searchedResult : MALCrawler.searchAnime(super.getAnimeInput())) {
+			for (SearchDetails searchedResult : MALCrawler.searchAnime(animeInput)) {
 				numberTitle++;
 				if (numberTitle < 31) {
 					Anime += " " + numberTitle + ": " + searchedResult.getTitle() + "\n";
@@ -57,9 +74,13 @@ public class MALSearch extends SearchInput {
 			// Access selectedAnime and print out the details using the selected anime link
 		}
 	}
-
-	public String animeDetails() throws IOException {
-		int numberInput = Integer.valueOf(super.getSelectedAnime());
+/**
+ * Get selected Anime details. 
+ * @param numberInput new value of the selected anime numberTitle.
+ * @return selected anime details. 
+ * @throws IOException
+ */
+	public String CrawlMALData(int numberInput) throws IOException {
 		int number = 0;
 		String animeDetails = "";
 		
