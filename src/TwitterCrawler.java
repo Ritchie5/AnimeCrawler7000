@@ -38,7 +38,8 @@ public class TwitterCrawler {
 	}
 
 	/**
-	 * This method will first create CSV file for search results to be stored in
+	 * This method will search and collect tweets according to a search term and sort them by favourites count before storing them in a CSV file
+	 * A CSV file is created for search results to be stored in
 	 * CSV file will include username(twitter handles), favourites and the tweet
 	 * Using twitter4J library to connect to twitter API to crawl for tweets, 
 	 * A query is created based on the search term and is set to filter out retweets and only to collect english tweets
@@ -69,22 +70,20 @@ public class TwitterCrawler {
 			throw new IllegalArgumentException("Empty search term!");
 		}
 
-		// set query keyword
+		// set query keyword, filtering out retweets
 		Query query = new Query(searchTerm + " -filter:retweets");
 
 		// set language to English
 		query.setLang("en");
 
-		// set number of tweets
-		int numTweets = 100;
+		// set number of tweets to be collected to be 1000
+		int numTweets = 1000;
 
 		long lastID = Long.MAX_VALUE;
 		// create arrayList to store tweets
 		ArrayList<Status> tweets = new ArrayList<Status>();
 
-		// open write
-		// csv version
-
+		// open writer
 		FileWriter writer = new FileWriter("animeCrawler7000.csv");
 		// Set csv headers
 		writer.write("Username,Favourites,Tweet\n");
@@ -106,7 +105,7 @@ public class TwitterCrawler {
 				tweets.addAll(result.getTweets());
 				//Print out current number of collected tweets in terminal
 				System.out.println("Collected " + tweets.size() + " tweets");
-
+				//save current tweet count for next iteration
 				for (Status t : tweets) {
 					if (t.getId() < lastID) {
 						lastID = t.getId();
@@ -128,10 +127,11 @@ public class TwitterCrawler {
 		});
 		// write to file
 		for (Status t : tweets) {
-			// csv version
+			// clean tweets before writing to CSV file
 			writer.write(t.getUser().getScreenName() + "," + t.getFavoriteCount() + ","
 					+ t.getText().trim().replaceAll("\n|\r|,", " ") + "\n");
 		}
+		//close writer
 		writer.close();
 	}
 
