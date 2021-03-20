@@ -163,7 +163,7 @@ class TestCase {
 	@Test
 	/**
 	 * Test invalid TwitterCrawler query string input.
-	 * This method will throw IllegalArgumentException if string inputed to query() in TwitterCrawler is null.
+	 * This method will throw IllegalArgumentException if string inputed to query() in TwitterCrawler is empty.
 	 * @exception IllegalArgumentException if search string is null
 	 */
 	void testInvalidTwitterCrawlerQuery() {
