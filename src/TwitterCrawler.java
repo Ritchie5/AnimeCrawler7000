@@ -113,7 +113,7 @@ public class TwitterCrawler {
 	}
 	
 	/**
-	 * This method will create a CSV file and write tweet data into it
+	 * This method will create a CSV file and write tweet data into it, CSV file is stored on local machine in main java file path
 	 * Data that will be contained in the CSV file are: Username(twitter handles), favourites and the tweet
 	 * tweets are cleaned using replaceAll() and trim() to remove line breaks, leading/trailing spaces and commas to conform to a CSV friendly format
 	 * @param tweets (ArrayList containing crawled tweets to write into CSV file)
