@@ -23,8 +23,7 @@ public class TwitterCrawler {
 	private Twitter twitter;
 
 	/**
-	 * Constructs TwitterCrawler instance configured with access tokens for Twitter
-	 * API
+	 * Constructs TwitterCrawler instance configured with access tokens for Twitter API
 	 */
 	public TwitterCrawler() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
