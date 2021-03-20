@@ -163,7 +163,7 @@ class TestCase {
 	@Test
 	/**
 	 * Test invalid TwitterCrawler query string input.
-	 * This method will throw IllegalArgumentException if string inputed to query method in TwitterCrawler is null.
+	 * This method will throw IllegalArgumentException if string inputed to query() in TwitterCrawler is null.
 	 * @exception IllegalArgumentException if search string is null
 	 */
 	void testInvalidTwitterCrawlerQuery() {
@@ -174,8 +174,8 @@ class TestCase {
 	
 	@Test
 	/**
-	 * Test if arrayList passed to CSVFileWrite is empty
-	 * This method will throw IllegalArgumentException if arrayList passed into CSVFileWrite method in TwitterCrawler is empty
+	 * Test if arrayList passed to CSVFileWrite() is empty
+	 * This method will throw IllegalArgumentException if arrayList passed into CSVFileWrite() in TwitterCrawler is empty
 	 * @exception IllegalArgumentException if arrayList is empty
 	 */
 	void testEmptyCSVInput() {
