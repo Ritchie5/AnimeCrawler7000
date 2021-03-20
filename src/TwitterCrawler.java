@@ -14,9 +14,18 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * @author Team Pikachuuuuuuu
+ * @version 1.8
+ * @since 1.0
+ */
+
 public class TwitterCrawler {
 	private Twitter twitter;
 
+	/**
+	 * Constructs TwitterCrawler instance configured with access tokens for Twitter API
+	 */
 	public TwitterCrawler() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true).setOAuthConsumerKey("c4DG9NWeXgLMr8Lfvt9D00Br9")
@@ -27,9 +36,23 @@ public class TwitterCrawler {
 		twitter = tf.getInstance();
 
 	}
-	
-	//to search for tweets and add to database. 
-	public String query(String searchTerm) throws TwitterException, IOException {
+
+	/**
+	 * This method will first create CSV file for search results to be stored in
+	 * CSV file will include username(twitter handles), favourites and the tweet
+	 * Using twitter4J library to connect to twitter API to crawl for tweets, 
+	 * A query is created based on the search term and is set to filter out retweets and only to collect english tweets
+	 * ArrayList tweets is created to store the search results
+	 * As the twitter API limits the crawler to collecting 100 tweets at a time, a while loop is used to bypass it and
+	 * collect 100 tweets at a time until 1000 tweets are collected
+	 * Collections and Comparator from java util is used to sort the ArrayList by favourites count
+	 * Data from sorted ArrayList is written into CSV file
+	 * The tweets are cleaned to remove line breaks and commas before being written into CSV file using .replaceAll() and .trim() so that it conforms nicely to CSV format 
+	 * @param query (searchTerm to search for tweets on Twitter)
+	 */
+
+	// to search for tweets and add to database.
+	public void query(String searchTerm) throws TwitterException, IOException {
 		try {
 			File tweetFile = new File("animeCrawler7000.csv");
 			if (tweetFile.createNewFile()) {
@@ -40,6 +63,10 @@ public class TwitterCrawler {
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
+		}
+		// For JTestUnit
+		if (searchTerm == null || searchTerm.isEmpty()) {
+			throw new IllegalArgumentException("Empty search term!");
 		}
 
 		// set query keyword
@@ -54,11 +81,10 @@ public class TwitterCrawler {
 		long lastID = Long.MAX_VALUE;
 		// create arrayList to store tweets
 		ArrayList<Status> tweets = new ArrayList<Status>();
-		// ArrayList<String> tweetList = new ArrayList<String>();
 
 		// open write
 		// csv version
-		
+
 		FileWriter writer = new FileWriter("animeCrawler7000.csv");
 		// Set csv headers
 		writer.write("Username,Favourites,Tweet\n");
@@ -78,7 +104,8 @@ public class TwitterCrawler {
 
 				// add tweets to arrayList tweets
 				tweets.addAll(result.getTweets());
-				System.out.println("Gathered " + tweets.size() + " tweets");
+				//Print out current number of collected tweets in terminal
+				System.out.println("Collected " + tweets.size() + " tweets");
 
 				for (Status t : tweets) {
 					if (t.getId() < lastID) {
@@ -106,7 +133,6 @@ public class TwitterCrawler {
 					+ t.getText().trim().replaceAll("\n|\r|,", " ") + "\n");
 		}
 		writer.close();
-		return searchTerm;
 	}
 
 }
