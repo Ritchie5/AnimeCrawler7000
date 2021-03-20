@@ -54,7 +54,8 @@ public class TwitterCrawler {
 	// to search for tweets and add to database.
 	public void query(String searchTerm) throws TwitterException, IOException {
 		// For JTestUnit
-		if (searchTerm == null || searchTerm.isEmpty()) {
+		if (searchTerm.isEmpty()|| searchTerm == null) {
+			System.out.println("Empty search term!");
 			throw new IllegalArgumentException("Empty search term!");
 		}
 
@@ -121,6 +122,11 @@ public class TwitterCrawler {
 	 */
 
 	public void CSVFileWrite(ArrayList<Status> tweets) throws IOException {
+		//For JTestUnit
+		if (tweets.isEmpty()) {
+			System.out.println("No tweets to write to CSV!");
+			throw new IllegalArgumentException("No tweets to write to CSV!");
+		}
 		try {
 			File tweetFile = new File("animeCrawler7000.csv");
 			if (tweetFile.createNewFile()) {
