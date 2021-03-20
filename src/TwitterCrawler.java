@@ -53,7 +53,7 @@ public class TwitterCrawler {
 	// to search for tweets and add to database.
 	public void query(String searchTerm) throws TwitterException, IOException {
 		// For JTestUnit
-		if (searchTerm.isEmpty()|| searchTerm == null) {
+		if (searchTerm.isEmpty()) {
 			System.out.println("Empty search term!");
 			throw new IllegalArgumentException("Empty search term!");
 		}
