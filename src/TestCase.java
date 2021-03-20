@@ -2,10 +2,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import twitter4j.Status;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 /**
 * Test case classes: SearchDetails, MALSearch, MALCrawler, SearchDetails, SearchInput, TwitterSearch 
@@ -166,7 +168,20 @@ class TestCase {
 	 */
 	void testInvalidTwitterCrawlerQuery() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			TwitterCrawler.query(null);
+			TwitterCrawler.query("");
+		});
+	}
+	
+	@Test
+	/**
+	 * Test if arrayList passed to CSVFileWrite is empty
+	 * This method will throw IllegalArgumentException if arrayList passed into CSVFileWrite method in TwitterCrawler is empty
+	 * @exception IllegalArgumentException if arrayList is empty
+	 */
+	void testEmptyCSVInput() {
+		ArrayList<Status> test= new ArrayList<Status>();
+		assertThrows(IllegalArgumentException.class, () -> {
+			TwitterCrawler.CSVFileWrite(test);
 		});
 	}
 	
