@@ -75,7 +75,7 @@ public class HomePageGUI extends JFrame {
 	/**
 	 * Constructor for accessing the methods in MALSearch
 	 */
-	public MALSearch mal = new MALSearch();
+	MALSearch mal = new MALSearch();
 
 	/**
 	 * Load the list of top 30 anime from MyAnimeList that will be loaded onto the main Frame
