@@ -16,7 +16,7 @@ class TestCase {
 	SearchDetails details;
 	MALSearch malSearch;
 	TwitterSearch twitterSearch;
-	TwitterCrawler twitterCrawler;
+	TwitterCrawler TwitterCrawler;
 	
 	@BeforeEach
 	/**
@@ -179,6 +179,7 @@ class TestCase {
 	 * @exception IllegalArgumentException if arrayList is empty
 	 */
 	void testEmptyCSVInput() {
+		//Create empty arrayList
 		ArrayList<Status> test= new ArrayList<Status>();
 		assertThrows(IllegalArgumentException.class, () -> {
 			TwitterCrawler.CSVFileWrite(test);
