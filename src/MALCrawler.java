@@ -18,7 +18,8 @@ public class MALCrawler {
 	* It will loop through the elements "tr.ranking-list" and selects "tr" element.
 	* Within the loop, the anime rank number and anime title will then be stored into the hashmap.
 	* Hashmap will be sorted by key (rank number) using Stream API.
-	* @return HashMap<Rank number, Anime Name>
+	* @return map (HashMap<Rank number, Anime Name>)
+	* @exception IOException throw a failure in Input & Output operations
 	*/
 	public static HashMap<Integer, String> topAnimes() throws IOException {
 		int number = 0;
@@ -53,8 +54,9 @@ public class MALCrawler {
 	* The method will loop through the elements "div.js-categories-seasonal.js-block-list.list" and selects "tr" element.
 	* Within the loop, the selected data will be stored in the ArrayList
 	* @param searchStr (User's search input string)
-	* @return Return ArrayList<Anime Name, Anime Link> if successfully connected, Return null if not able to connected
+	* @return Return list (ArrayList<Anime Name, Anime Link> if successfully connected, Return null if not able to connected)
 	* @exception IllegalArgumentException if search string is null
+	* @exception IOException throw a failure in Input & Output operations
 	*/
 	public static ArrayList<SearchDetails> searchAnime(String searchStr) throws IOException {
 		String url = "https://myanimelist.net/anime.php?cat=anime&q=";
@@ -115,7 +117,8 @@ public class MALCrawler {
 	* If the value compared is similar to the values of each case, the data will be stored in the string.
 	* Within the second and third loop, the selected data will be stored in the string.
 	* @param link (Selected anime's link)
-	* @return Return string containing selected anime details
+	* @return Return details (string containing selected anime details)
+	* @exception IOException throw a failure in Input & Output operations
 	*/
 	public static String selectedAnime(String link) throws IOException {
 		String details = "";
