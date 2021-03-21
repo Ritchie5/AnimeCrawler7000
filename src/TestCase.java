@@ -16,7 +16,7 @@ class TestCase {
 	SearchDetails details;
 	MALSearch malSearch;
 	TwitterSearch twitterSearch;
-	TwitterCrawler TwitterCrawler;
+	TwitterCrawler Twitter;
 	
 	@BeforeEach
 	/**
@@ -27,6 +27,7 @@ class TestCase {
 		details = new SearchDetails();
 		malSearch = new MALSearch("pikachu", "1", "Pokemon: Pichu to Pikachu");
 		twitterSearch = new TwitterSearch();
+		Twitter = new TwitterCrawler();
 	}
 	
 	@AfterEach
@@ -168,7 +169,7 @@ class TestCase {
 	 */
 	void testInvalidTwitterCrawlerQuery() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			TwitterCrawler.query("");
+			Twitter.query("");
 		});
 	}
 	
@@ -182,7 +183,7 @@ class TestCase {
 		//Create empty arrayList
 		ArrayList<Status> test= new ArrayList<Status>();
 		assertThrows(IllegalArgumentException.class, () -> {
-			TwitterCrawler.CSVFileWrite(test);
+			Twitter.CSVFileWrite(test);
 		});
 	}
 	
