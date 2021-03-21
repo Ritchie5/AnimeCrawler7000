@@ -8,9 +8,6 @@ import java.util.List;
  * @since 1.0
  */
 public class MALSearch extends SearchInput {
-	public MALSearch() {
-		super();
-	}
 	/**
 	 * Sets the parent class variables, SearchInput()
 	 * @param animeInput sets animeInput of parent class 
@@ -20,10 +17,11 @@ public class MALSearch extends SearchInput {
 	public MALSearch(String animeInput, String selectedAnime, String animeTitle) {
 		super(animeInput, selectedAnime, animeTitle);
 	}
+	
 /**
  * crawl MyAnimeList(MAL) data and get the top 30 anime.
  * @return Top30 anime in MAL. 
- * @throws IOException
+ * @throws IOException throws error
  */
 	public String CrawlMALData() throws IOException {
 		String Top30;
@@ -44,7 +42,7 @@ public class MALSearch extends SearchInput {
  * Get the anime title and details of selected Anime.
  * @param animeInput numberTile of searchedAnime 
  * @return anime numbering and title. 
- * @throws IOException 
+ * @throws IOException throws error
  */
 	public String CrawlMALData(String animeInput) throws IOException {
 		
@@ -77,7 +75,7 @@ public class MALSearch extends SearchInput {
  * Get selected Anime details. 
  * @param numberInput new value of the selected anime numberTitle.
  * @return selected anime details. 
- * @throws IOException
+ * @throws IOException throws error
  */
 	public String CrawlMALData(int numberInput) throws IOException {
 		int number = 0;

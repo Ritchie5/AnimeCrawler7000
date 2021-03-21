@@ -47,28 +47,40 @@ public class HomePageGUI extends JFrame {
 
 	}
 
-	// count the number of button clicks to differentiate between searching for an
-	// anime and selecting an anime
+	/**
+	 * count the number of button clicks to differentiate between searching for an anime and selecting an anime
+	 */
 	public int search;
 
-	// store the result of the top 30 anime data crawl from MyAnimeList
+	/**
+	 * Store the result of the top 30 anime data crawl from MyAnimeList
+	 */
 	public String top30anime;
 
-	// store the title of the searched anime
+	/**
+	 * Store the title of the searched anime
+	 */
 	public String searchedanime;
 
-	// store the searched input by user
+	/**
+	 * Store the searched input by user
+	 */
 	public String animechosen;
 
-	// counter used for paging between tweets
+	/**
+	 * Counter used for paging between tweets
+	 */
 	public int tweetpage = 0;
 
-	// Constructor for accessing the methods in MALSearch
+	/**
+	 * Constructor for accessing the methods in MALSearch
+	 */
 	public MALSearch mal = new MALSearch();
 
-	// Load the list of top 30 anime from MyAnimeList that will be loaded onto the
-	// main Frame
-	// call homeGUI() method
+	/**
+	 * Load the list of top 30 anime from MyAnimeList that will be loaded onto the main Frame
+	 * call homeGUI() method
+	 */
 
 	public HomePageGUI() {
 		setTop30Anime();

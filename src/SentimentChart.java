@@ -27,7 +27,7 @@ public class SentimentChart extends JFrame {
 	 * 
 	 * @param appTitle  sets the Jframe title.
 	 * @param animeName sets the Chart Title for the bar chart.
-	 * @throws IOException
+	 * @throws IOException throws error
 	 */
 	public SentimentChart(String appTitle, String animeName) throws IOException {
 		// Sets the Jframe title
@@ -57,7 +57,7 @@ public class SentimentChart extends JFrame {
 	 * CatergoryDataset.
 	 * 
 	 * @return Dataset containing Dislike, Neutral, Like percentages.
-	 * @throws IOException
+	 * @throws IOException throws error
 	 */
 	private CategoryDataset createDataset() throws IOException {
 
@@ -73,7 +73,7 @@ public class SentimentChart extends JFrame {
 	 * of the sentiment analysis are stored into an array.
 	 * 
 	 * @return Int array containing Dislike, Neutral, Like percentages.
-	 * @throws IOException
+	 * @throws IOException throws error
 	 */
 	public int[] sentimentanalysis() throws IOException {
 		int[] value = { 0, 0, 0 };
