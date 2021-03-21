@@ -54,7 +54,7 @@ public class MALSearch extends SearchInput {
 			throw new IllegalArgumentException("List null!");
 		}
 		
-		if (MALCrawler.searchAnime(animeInput).isEmpty()) // return invalid if the hashmap is empty
+		if (MALCrawler.searchAnime(animeInput).isEmpty()) // return invalid if the arraylist is empty
 		{
 			return "Invalid Input, please try again!";
 		} else {
