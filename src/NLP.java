@@ -115,8 +115,8 @@ public class NLP {
 	 * Takes in sentimentArray and iterates through its indexes to calculate
 	 * totalScore, tweetCount and averageScore, and returns them.
 	 * 
-	 * @param array        takes in sentimentArray and iterates through to obtain
-	 *                     scores for each index.
+	 * @param array takes in sentimentArray and iterates through to obtain
+	 *              scores for each index.
 	 * score -      Counter initialised as 0, incremented for index parsed in
 	 *              sentimentArray
 	 * totalScore - Each iteration will check the index of the score and then
@@ -124,7 +124,7 @@ public class NLP {
 	 *              index.
 	 * tweetCount - With each iteration, the counter for total tweets is also
 	 *              incremented.
-	 * @param array (averageScore Obtained by dividing totalScore by tweetCount)
+	 * averageScore - Obtained by dividing totalScore by tweetCount
 	 * @return totalScore, averageScore values in an array
 	 */
 	public static double[] getScores(double[] array) {

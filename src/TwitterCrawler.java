@@ -47,7 +47,7 @@ public class TwitterCrawler {
 	 * CSVFileWrite() is called to write data from ArrayList into a csv file
 	 * @param searchTerm (to search for tweets on Twitter)
 	 * @throws TwitterException An exception class that will be thrown when TwitterAPI calls are failed.
-	 * @throws IOException throw a failure in Input & Output operations
+	 * @throws IOException throw a failure in Input and Output operations
 	 */
 
 	// to search for tweets and add to database.
@@ -117,7 +117,7 @@ public class TwitterCrawler {
 	 * Data that will be contained in the CSV file are: Username(twitter handles), favourites and the tweet
 	 * tweets are cleaned using replaceAll() and trim() to remove line breaks, leading/trailing spaces and commas to conform to a CSV friendly format
 	 * @param tweets (ArrayList containing crawled tweets to write into CSV file)
-	 * @throws IOException throw a failure in Input & Output operations
+	 * @throws IOException throw a failure in Input and Output operations
 	 */
 
 	public void CSVFileWrite(ArrayList<Status> tweets) throws IOException {
