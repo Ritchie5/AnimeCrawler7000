@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 /**
 * Test case classes: SearchDetails, MALSearch, MALCrawler, SearchDetails, SearchInput, TwitterSearch 
+* @author Team Pikachuuuuuuu
+* @version 1.8
+* @since 1.0
 */
 class TestCase {
 	SearchDetails details;

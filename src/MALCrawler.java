@@ -10,6 +10,9 @@ import org.jsoup.select.Elements;
 import org.jsoup.Connection;
 /**
 * To extract data from myanimelist.net and the result returned will be printed on the application.
+* @author Team Pikachuuuuuuu
+* @version 1.8
+* @since 1.0
 */
 public class MALCrawler {
 	/**
