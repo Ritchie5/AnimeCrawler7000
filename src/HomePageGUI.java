@@ -300,7 +300,7 @@ public class HomePageGUI extends JFrame {
 					center.setText("Fetching data... Please wait...");
 					center.paintImmediately(center.getVisibleRect());
 					getTweets.query(searchedanime);
-					String result = getTweets1.topTweets(tweetpage, "animeCrawler7000.csv");
+					String result = getTweets1.topTweets(tweetpage, NLP.csv);
 					center.setText(result);
 					next.setEnabled(true);
 					back.setEnabled(true);
@@ -325,13 +325,13 @@ public class HomePageGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				tweetpage += 5;
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
+				String result = getTweets.topTweets(tweetpage, NLP.csv);
 				if (result == null) {
 					tweetpage -= 5;
 					if (tweetpage < 0) {
 						tweetpage = 0;
 					}
-					result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
+					result = getTweets.topTweets(tweetpage, NLP.csv);
 					center.setText(result);
 				} else {
 					center.setText(result);
@@ -346,7 +346,7 @@ public class HomePageGUI extends JFrame {
 					tweetpage = 0;
 				}
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
+				String result = getTweets.topTweets(tweetpage, NLP.csv);
 				center.setText(result);
 			}
 		});
