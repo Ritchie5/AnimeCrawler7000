@@ -72,7 +72,7 @@ abstract class SearchInput {
 	}
 /**
  * change the animeTitle based on the selected anime.
- * @param animeTitle
+ * @param animeTitle set the title of the selected anime.
  */
 	public void setSelectedAnimetitle(String animeTitle) {
 		this.animeTitle = animeTitle;

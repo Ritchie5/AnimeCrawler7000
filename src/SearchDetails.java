@@ -14,6 +14,9 @@ public class SearchDetails {
 	
 	/**
 	 * This is a default constructor with parameters
+	 * 
+	 * @param title
+	 * @param link
 	 */
 	public SearchDetails(String title, String link) {
 		this.title = title;
