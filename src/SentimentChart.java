@@ -81,7 +81,7 @@ public class SentimentChart extends JFrame {
 		NLP.init();
 
 		/* read csv and store tweet text into ArrayList */
-		ArrayList<String> tweets = NLP.readCSVintoArray();
+		ArrayList<String> tweets = NLP.readCSVintoArray("animeCrawler7000.csv");
 		NLP.readTweets(tweets); // go through tweet texts in the ArrayList and assign individual score, appends
 								// score into array
 		NLP.getScores(NLP.sentimentArray); // get the scores from the sentimentArray and find total score, avr score,

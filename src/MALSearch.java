@@ -10,7 +10,6 @@ import java.util.List;
 public class MALSearch extends SearchInput {
 	public MALSearch() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Sets the parent class variables, SearchInput()

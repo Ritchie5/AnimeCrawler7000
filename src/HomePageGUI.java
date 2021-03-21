@@ -58,10 +58,10 @@ public class HomePageGUI extends JFrame {
 	public String searchedanime;
 
 	// store the searched input by user
-	public String animesearched;
+	public String animechosen;
 
 	// counter used for paging between tweets
-	public int i = 0;
+	public int tweetpage = 0;
 
 	// Constructor for accessing the methods in MALSearch
 	public MALSearch mal = new MALSearch();
@@ -217,8 +217,8 @@ public class HomePageGUI extends JFrame {
 				if (e.getSource() == searchbutton) {
 					search++;
 					if (search == 1) {
-						animesearched = searchTxtField.getText();
-						boolean isEmpty = mal.setAnimeInput(animesearched);
+						animechosen = searchTxtField.getText();
+						boolean isEmpty = mal.setAnimeInput(animechosen);
 						if (isEmpty == false) {
 							JOptionPane.showMessageDialog(null,
 									"Please enter an anime title that have more than 3 words!");
@@ -226,12 +226,12 @@ public class HomePageGUI extends JFrame {
 							searchTxtField.setText(null);
 						} else {
 							try {
-								animesearched = mal.CrawlMALData(mal.getAnimeInput());
+								animechosen = mal.CrawlMALData(mal.getAnimeInput());
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
-							if (animesearched != null) {
-								center.setText(animesearched);
+							if (animechosen != null) {
+								center.setText(animechosen);
 								homeBtn.setEnabled(true);
 								searchTxtField.setText(null);
 							}
@@ -258,6 +258,8 @@ public class HomePageGUI extends JFrame {
 							searchTxtField.setText(null);
 							search = 0;
 						} else {
+							JOptionPane.showMessageDialog(null,
+									"Please enter the number of the anime you have chosen!");
 							searchTxtField.setText(null);
 							search++;
 						}
@@ -298,7 +300,7 @@ public class HomePageGUI extends JFrame {
 					center.setText("Fetching data... Please wait...");
 					center.paintImmediately(center.getVisibleRect());
 					getTweets.query(searchedanime);
-					String result = getTweets1.topTweets(i, "animeCrawler7000.csv");
+					String result = getTweets1.topTweets(tweetpage, "animeCrawler7000.csv");
 					center.setText(result);
 					next.setEnabled(true);
 					back.setEnabled(true);
@@ -321,15 +323,15 @@ public class HomePageGUI extends JFrame {
 		 */
 		next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				i += 5;
+				tweetpage += 5;
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.topTweets(i, "animeCrawler7000.csv");
+				String result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
 				if (result == null) {
-					i -= 5;
-					if (i < 0) {
-						i = 0;
+					tweetpage -= 5;
+					if (tweetpage < 0) {
+						tweetpage = 0;
 					}
-					result = getTweets.topTweets(i, "animeCrawler7000.csv");
+					result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
 					center.setText(result);
 				} else {
 					center.setText(result);
@@ -339,12 +341,12 @@ public class HomePageGUI extends JFrame {
 
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				i -= 5;
-				if (i < 0) {
-					i = 0;
+				tweetpage -= 5;
+				if (tweetpage < 0) {
+					tweetpage = 0;
 				}
 				TwitterSearch getTweets = new TwitterSearch();
-				String result = getTweets.topTweets(i, "animeCrawler7000.csv");
+				String result = getTweets.topTweets(tweetpage, "animeCrawler7000.csv");
 				center.setText(result);
 			}
 		});
