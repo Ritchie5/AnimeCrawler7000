@@ -101,7 +101,7 @@ public class NLP {
 	 * being the most positive. For each score, add a counter to the respective
 	 * index of the array.
 	 * 
-	 * @param tweet single string to find sentiment score.
+	 * @param tweets single string to find sentiment score.
 	 */
 	public static void readTweets(ArrayList<String> tweets) {
 		for (String tweet : tweets) {
