@@ -9,6 +9,13 @@ import java.util.List;
  */
 public class MALSearch extends SearchInput {
 	/**
+	 * Empty constructor
+	 */
+	public MALSearch() {
+		
+	}
+	
+	/**
 	 * Sets the parent class variables, SearchInput()
 	 * @param animeInput sets animeInput of parent class 
 	 * @param selectedAnime sets selectedAnime of parent class
@@ -17,7 +24,7 @@ public class MALSearch extends SearchInput {
 	public MALSearch(String animeInput, String selectedAnime, String animeTitle) {
 		super(animeInput, selectedAnime, animeTitle);
 	}
-	
+
 /**
  * crawl MyAnimeList(MAL) data and get the top 30 anime.
  * @return Top30 anime in MAL. 
